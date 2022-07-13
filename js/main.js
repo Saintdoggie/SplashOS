@@ -121,7 +121,7 @@ function mouse() {
         box: function() {
             if (this.barThing == true) {
                 if (this.y > 700) {
-                    this.y-=20;
+                    this.y-=30;
                 }
                 if (mouseX > 10 && mouseX < 110 && mouseY > 950 && mouseY < 990) {
                     this.mouseOverBar = true;
@@ -140,7 +140,7 @@ function mouse() {
             }
             else {
                 if (this.y < 1100) {
-                    this.y+=20;
+                    this.y+=30;
                 }
             }
             fill(200,200,200)
@@ -151,6 +151,41 @@ function mouse() {
     
 }
 
+//selector 
+{
+    var selector = {
+        
+        selectArea: function() {
+            if (mouseIsPressed && mouseButton === LEFT) {
+                selectTime++;
+                if (selectX <= mouseX && selectY <= mouseY) {
+                    if (selectTime < 2) {
+                        selectX = mouseX;
+                        selectY = mouseY;
+                    }
+                    else {
+                        selectWidth = mouseX-selectX;
+                        selectHeight = mouseY-selectY;
+                    }
+                    fill(0,255,255,200);
+                    rect(selectX, selectY, selectWidth, selectHeight, 2);
+                }
+                
+                
+            }
+            else {
+                selectX = 0;
+                selectY = 0;
+                selectWidth = 0;
+                selectHeight = 0;
+                selectTime = 0;
+            }
+            noStroke();
+        }
+    }
+
+
+}
 
 
 function setup() 
@@ -176,11 +211,12 @@ function draw()
         break;
         case true:
         background(0,0,255)
+        selector.selectArea()
+
         taskbar.box()
 
 
         taskbar.bar()
-
 
         mouse()
         break;
