@@ -1,11 +1,4 @@
 
-/*
-0.0.1
-restarted on git and vscode because it was getting kind of limiting...
-
-
-*/
-
 //mouse stuff
 {
 function mouse() {
@@ -13,7 +6,7 @@ function mouse() {
     stroke(0);
     strokeWeight(3)
     if (mouseIsPressed) {
-        fill(200)
+        fill(100)
     }
     ellipse(mouseX,mouseY,20,20);
     fill(0)
@@ -22,7 +15,16 @@ function mouse() {
 } 
 
 
-
+//keyboard
+{
+    var keys = [];
+    function keyPressed() {
+        keys[keys] = true;
+    }
+    function keyReleased() {
+        keys[keys] = false;
+    }
+}
 
 
 
@@ -38,16 +40,46 @@ function mouse() {
 
 //log in stuff
 {
-    let loggedIn = false
-
+    var loggedIn = false;
+    let logTyped = "";
     var logIn = function() {
+        
         fill(0)
+        textSize(50)
+        text("Please Log In", 330,200)
         rect(200,300,600,200,10);
         fill(255)
         rect(300,350,400,100,10)
+        textSize(12)
         
+        if (keyCode === 8 && keyIsPressed) {
+            logTyped = logTyped.slice(0,logTyped.length-1);
+            keyIsPressed = false
+        }
+        if (keyCode !== 8 && logTyped.length < 10 && keyCode !== ENTER && keyIsPressed) {
+            logTyped+=key.toString();
+            keyIsPressed = false
+        }
+        if (keyCode === ENTER && keys) {
+            if (logTyped === "something") {
+                loggedIn = true
+                logTyped = "";
 
-    }
+                
+            }
+        }
+        if (keys === ENTER) {
+            if (logTyped === "never gon-") {
+                println("Done!");
+                
+            }
+        }
+        fill(0)
+        textSize(40)
+        text(logTyped + "|",320,415);
+        textSize(12)
+        }
+        
     
 
 
@@ -56,11 +88,20 @@ function mouse() {
 }
 
 
+//taskbar
+{
+    function taskbar() {
+        rect(0,930,1000,70);
+
+    }
+}
+
 
 
 function setup() 
 {
-    createCanvas(1000,1000);
+    const canvas = createCanvas(1000, 1000)
+    canvas.elt.addEventListener("contextmenu", (e) => e.preventDefault())
     noCursor();
     frameRate(60);
 }
@@ -68,9 +109,20 @@ function setup()
 
 function draw() 
 {
-    background(220)
+    switch (loggedIn) {
+        case false:
+            background(220)
+            logIn()
+            mouse()
+        break;
+        case true:
+        background(0,0,255)
 
-    logIn()
-    mouse()
+        taskbar()
+
+
+        mouse()
+        break;
+    }
 
 }
