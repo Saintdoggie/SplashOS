@@ -11,7 +11,7 @@ function mouse() {
     ellipse(mouseX,mouseY,20,20);
     fill(0)
     noStroke()
-    text(mouseX + ", " + mouseY,12,12)
+    text(mouseX + ", " + mouseY + ",  " + taskbar.barThing + ", " + taskbar.barTime,12,12)
 } 
 
 
@@ -61,7 +61,7 @@ function mouse() {
             keyIsPressed = false
         }
         if (keyCode === ENTER && keys) {
-            if (logTyped === "something") {
+            if (logTyped.toLowerCase() === "something") {
                 loggedIn = true
                 logTyped = "";
 
@@ -69,17 +69,16 @@ function mouse() {
             }
         }
         if (keys === ENTER) {
-            if (logTyped === "never gon-") {
+            if (logTyped.toLowerCase() === "extra") {
                 println("Done!");
                 
             }
         }
         fill(0)
         textSize(40)
-        text(logTyped + "|",320,415);
+        text(logTyped.toLowerCase() + "|",320,415);
         textSize(12)
         }
-        
     
 
 
@@ -90,10 +89,66 @@ function mouse() {
 
 //taskbar
 {
-    function taskbar() {
-        rect(0,930,1000,70);
+    var taskbar = {
+        init: function() {
+            this.x = 10;
+            this.y = 1100;
+            this.barThing = false;
+            this.barTime = 10;
+        },
+        bar: function() {
+        fill(0,0,0,200)
+        rect(0,940,1000,60); 
+        fill(200)
+        if (this.barTime < 12) {
+            this.barTime++;
+        }
+        if (mouseX > 10 && mouseX < 110 && mouseY > 950 && mouseY < 990) {
+            fill(150)
+            if (mouseIsPressed) {
+                if (this.barTime > 10 && this.barThing == false && mouseButton == LEFT) {
+                    this.barThing = true
+                    this.barTime = 0;
+                }
+                else if (this.barTime > 10 && this.barThing == true && mouseButton == LEFT) {
+                    this.barThing = false;
+                    this.barTime = 0;
+                }
+            }
+        }
+        rect(10,950,100,40,5)
+        },
+        box: function() {
+            if (this.barThing == true) {
+                if (this.y > 700) {
+                    this.y-=20;
+                }
+                if (mouseX > 10 && mouseX < 110 && mouseY > 950 && mouseY < 990) {
+                    this.mouseOverBar = true;
+                }
+                else {
+                    this.mouseOverBar = false;
+                }
+                if (mouseIsPressed && this.mouseOverBar == false) {
+                    
+                    this.barThing = false;
+                
+                }
+                    
+                        
+                    
+            }
+            else {
+                if (this.y < 1100) {
+                    this.y+=20;
+                }
+            }
+            fill(200,200,200)
+            rect(this.x,this.y,300,230,4)
 
+        }
     }
+    
 }
 
 
@@ -104,11 +159,15 @@ function setup()
     canvas.elt.addEventListener("contextmenu", (e) => e.preventDefault())
     noCursor();
     frameRate(60);
+    loggedIn = true;
+    taskbar.init()
+
 }
 
 
 function draw() 
 {
+    
     switch (loggedIn) {
         case false:
             background(220)
@@ -117,8 +176,10 @@ function draw()
         break;
         case true:
         background(0,0,255)
+        taskbar.box()
 
-        taskbar()
+
+        taskbar.bar()
 
 
         mouse()
