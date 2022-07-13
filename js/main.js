@@ -194,7 +194,6 @@ function setup()
     canvas.elt.addEventListener("contextmenu", (e) => e.preventDefault())
     noCursor();
     frameRate(60);
-    loggedIn = true;
     taskbar.init()
 
 }
