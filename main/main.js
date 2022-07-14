@@ -13,7 +13,6 @@ function setup()
 
 function draw() 
 {
-    loggedIn = true;
     switch (loggedIn) {
         case false:
             background(220)
