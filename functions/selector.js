@@ -14,7 +14,10 @@ var selector = {
                     selectHeight = mouseY-selectY;
                 }
                 fill(0,255,255,200);
+                stroke(0);
+                strokeWeight(2);
                 rect(selectX, selectY, selectWidth, selectHeight, 2);
+                noStroke();
             }
             
             

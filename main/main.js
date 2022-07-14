@@ -28,6 +28,7 @@ function draw()
         taskbar.box();
         taskbar.bar();
         TimeDisplay();
+        rightClickMain.rightClick()
         mouse()
         break;
     }
