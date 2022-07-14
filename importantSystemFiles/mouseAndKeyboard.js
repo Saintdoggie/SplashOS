@@ -8,7 +8,6 @@ function mouse() {
     ellipse(mouseX,mouseY,20,20);
     fill(0)
     noStroke()
-    text(mouseX + ", " + mouseY + ",  " + taskbar.barThing + ", " + taskbar.barTime,12,12)
 }
 
 var keys = [];

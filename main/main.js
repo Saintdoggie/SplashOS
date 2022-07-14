@@ -1,3 +1,5 @@
+
+
 function setup() 
 {
     const canvas = createCanvas(1000, 1000)
@@ -11,7 +13,7 @@ function setup()
 
 function draw() 
 {
-    
+    loggedIn = true;
     switch (loggedIn) {
         case false:
             background(220)
@@ -19,14 +21,13 @@ function draw()
             mouse()
         break;
         case true:
-        background(0,0,255)
-        selector.selectArea()
-
-        taskbar.box()
+        background(0,0,255);
+        selector.selectArea();
 
 
-        taskbar.bar()
-
+        taskbar.box();
+        taskbar.bar();
+        TimeDisplay();
         mouse()
         break;
     }
