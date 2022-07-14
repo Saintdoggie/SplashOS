@@ -4,6 +4,7 @@ var taskbar = {
         this.y = 1100;
         this.barThing = false;
         this.barTime = 10;
+        this.boxTyped = "";
     },
     bar: function() {
     fill(0,0,0,200)
@@ -16,7 +17,8 @@ var taskbar = {
         fill(150)
         if (mouseIsPressed) {
             if (this.barTime > 10 && this.barThing == false && mouseButton == LEFT) {
-                this.barThing = true
+                this.barThing = true;
+                this.boxTyped = "";
                 this.barTime = 0;
             }
             else if (this.barTime > 10 && this.barThing == true && mouseButton == LEFT) {
@@ -52,8 +54,23 @@ var taskbar = {
                 this.y+=30;
             }
         }
-        fill(200,200,200)
-        rect(this.x,this.y,300,230,4)
+        fill(200,200,200);
+        rect(this.x,this.y,300,230,4);
+        fill(0,0,0,200);
+        rect(this.x + 20, this.y + 20, 250,50,4);
+        if (keyCode === 8 && keyIsPressed) {
+            this.boxTyped = this.boxTyped.slice(0,this.boxTyped.length-1);
+            keyIsPressed = false
+        }
+        if (keyCode !== 8 && this.boxTyped.length < 15 && keyCode !== ENTER && keyIsPressed && blockedChars() == false) {
+            this.boxTyped+=key.toString();
+            keyIsPressed = false
+        }
+        if (keyCode === ENTER && keys) {
+            
+        }
+        fill(255,255,255,200);
+        text(this.boxTyped,this.x + 30, this.y + 50)
 
     }
 }

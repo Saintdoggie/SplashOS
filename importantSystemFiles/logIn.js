@@ -14,22 +14,16 @@ var loggedIn = false;
             logTyped = logTyped.slice(0,logTyped.length-1);
             keyIsPressed = false
         }
-        if (keyCode !== 8 && logTyped.length < 10 && keyCode !== ENTER && keyIsPressed) {
+        if (keyCode !== 8 && logTyped.length < 10 && keyCode !== ENTER && keyIsPressed && blockedChars() == false) {
             logTyped+=key.toString();
             keyIsPressed = false
         }
         if (keyCode === ENTER && keys) {
             if (logTyped.toLowerCase() === "something") {
-                loggedIn = true
-                logTyped = "";
-
-                
+                loggedIn = true 
             }
-        }
-        if (keys === ENTER) {
             if (logTyped.toLowerCase() === "extra") {
-                println("Done!");
-                
+                extra = true;
             }
         }
         fill(0)
