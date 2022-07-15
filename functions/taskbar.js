@@ -7,27 +7,32 @@ var taskbar = {
         this.boxTyped = "";
     },
     bar: function() {
-    fill(0,0,0,200)
-    rect(0,940,1000,60); 
-    fill(200)
-    if (this.barTime < 12) {
-        this.barTime++;
-    }
-    if (mouseX > 10 && mouseX < 110 && mouseY > 950 && mouseY < 990) {
-        fill(150)
-        if (mouseIsPressed) {
-            if (this.barTime > 10 && this.barThing == false && mouseButton == LEFT) {
-                this.barThing = true;
-                this.boxTyped = "";
-                this.barTime = 0;
-            }
-            else if (this.barTime > 10 && this.barThing == true && mouseButton == LEFT) {
-                this.barThing = false;
-                this.barTime = 0;
+        fill(0,0,0,200)
+        rect(0,940,1000,60); 
+        fill(200)
+        if (this.barTime < 12) {
+            this.barTime++;
+        }
+        if (mouseX > 10 && mouseX < 110 && mouseY > 950 && mouseY < 990) {
+            fill(150)
+            if (mouseIsPressed) {
+                if (this.barTime > 10 && this.barThing == false && mouseButton == LEFT) {
+                    this.barThing = true;
+                    this.boxTyped = "";
+                    this.barTime = 0;
+                }
+                else if (this.barTime > 10 && this.barThing == true && mouseButton == LEFT) {
+                    this.barThing = false;
+                    this.barTime = 0;
+                    this.boxTyped = "";
+
+                }
             }
         }
-    }
-    rect(10,950,100,40,5)
+        rect(10,950,100,40,5)
+        if (this.barThing == false) {
+            this.boxTyped = "";
+        }
     },
     box: function() {
         if (this.barThing == true) {
@@ -67,10 +72,14 @@ var taskbar = {
             keyIsPressed = false
         }
         if (keyCode === ENTER && keys) {
-            
+            if (this.boxTyped.charAt(0) == "#") {
+                if (this.boxTyped.slice(2,this.boxTyped.length) == "settings") {
+                    windows.id[0[0]] = true;
+                }
+            }
         }
         fill(255,255,255,200);
-        text(this.boxTyped,this.x + 30, this.y + 50)
+        text(this.boxTyped + "|",this.x + 30, this.y + 50)
 
     }
 }

@@ -1,8 +1,8 @@
 
 var selector = {
-        
+    selectAble: true,
     selectArea: function() {
-        if (mouseIsPressed && mouseButton === LEFT) {
+        if (mouseIsPressed && mouseButton === LEFT && this.selectAble == true) {
             selectTime++;
             if (selectX <= mouseX && selectY <= mouseY) {
                 if (selectTime < 2) {
@@ -14,8 +14,9 @@ var selector = {
                     selectHeight = mouseY-selectY;
                 }
                 fill(0,255,255,200);
-                stroke(0);
+                stroke(0,0,200);
                 strokeWeight(2);
+
                 rect(selectX, selectY, selectWidth, selectHeight, 2);
                 noStroke();
             }

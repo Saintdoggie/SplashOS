@@ -29,6 +29,7 @@ function draw()
         taskbar.bar();
         TimeDisplay();
         rightClickMain.rightClick()
+        windows.ids()
         mouse()
         break;
     }
