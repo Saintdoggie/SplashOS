@@ -13,7 +13,6 @@ function setup()
 
 function draw() 
 {
-    loggedIn = true;
     switch (loggedIn) {
         case false:
             background(220)
@@ -23,13 +22,12 @@ function draw()
         case true:
         background(0,0,255);
         selector.selectArea();
-
+        windows.ids()
 
         taskbar.box();
         taskbar.bar();
         TimeDisplay();
         rightClickMain.rightClick()
-        windows.ids()
         mouse()
         //not much here...
         break;

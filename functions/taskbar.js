@@ -77,6 +77,9 @@ var taskbar = {
                 if (this.boxTyped.slice(2,this.boxTyped.length).toLowerCase() == "settings") {
                     winSettings[0].open = true;
                 }
+                if (this.boxTyped.slice(2,this.boxTyped.length).toLowerCase() == "debug") {
+                    winSettings[1].open = true;
+                }
             }
         }
         fill(255,255,255,200);

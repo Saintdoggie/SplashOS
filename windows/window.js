@@ -70,7 +70,7 @@ var windows = {
         this.id = Object.keys(winSettings)
         for (let id = this.id.length; id--; id === 0) {
             if (winSettings[id].open == true) {
-                windows.run(winSettings[0].x,winSettings[0].y,winSettings[0].width,winSettings[0].height, function() {winSettings[0].doOnClose()}, function() {winSettings[0].innerContent()});    
+                windows.run(winSettings[id].x,winSettings[id].y,winSettings[id].width,winSettings[id].height, function() {winSettings[id].doOnClose()}, function() {winSettings[id].innerContent()}, id);    
             }        
             
         }
