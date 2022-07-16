@@ -28,6 +28,8 @@ var windows = {
         rect(0,0,winSettings[id].width,20);
         fill(255, 0, 0);
         ellipse(10,10,15,15);
+        
+        
         if (mouseX > winSettings[id].x + 5 && mouseX < winSettings[id].x + 20 && mouseY > winSettings[id].y + 5 && mouseY < winSettings[id].y + 20) {
             mouseHand = true;
             if (mouseIsPressed) {
@@ -57,8 +59,8 @@ var windows = {
         if (winSettings[id].x > 990) {
             winSettings[id].x = 990;
         }
-        if (winSettings[id].y > 990) {
-            winSettings[id].y = 990;
+        if (winSettings[id].y > 920) {
+            winSettings[id].y = 920;
         }
         fill(150,255,10);
         ellipse(30,10,15,15);
