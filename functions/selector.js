@@ -29,7 +29,11 @@ var selector = {
             selectWidth = 0;
             selectHeight = 0;
             selectTime = 0;
+            this.selectAble = true;
+
         }
+       
+        
         noStroke();
     }
 }

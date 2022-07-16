@@ -28,6 +28,7 @@ var taskbar = {
 
                 }
             }
+            
         }
         rect(10,950,100,40,5)
         if (this.barThing == false) {
@@ -72,14 +73,14 @@ var taskbar = {
             keyIsPressed = false
         }
         if (keyCode === ENTER && keys) {
-            if (this.boxTyped.charAt(0) == "#") {
-                if (this.boxTyped.slice(2,this.boxTyped.length) == "settings") {
-                    windows.id[0[0]] = true;
+            if (this.boxTyped.charAt(0).toLowerCase() == "#") {
+                if (this.boxTyped.slice(2,this.boxTyped.length).toLowerCase() == "settings") {
+                    winSettings[0].open = true;
                 }
             }
         }
         fill(255,255,255,200);
-        text(this.boxTyped + "|",this.x + 30, this.y + 50)
+        text(this.boxTyped.toLowerCase() + "|",this.x + 30, this.y + 50)
 
     }
 }
