@@ -17,7 +17,7 @@ rightClickMain = {
             fill(220);
             if (mouseX > this.x && mouseX < this.x + 150 && mouseY > this.y && mouseY < this.y + 35) {
                 fill(200)
-                if (mouseIsPressed) {
+                if (mouseIsPressed && mouseButton == LEFT) {
                     winSettings[0].open = true;
                     this.clicked = false;
                 }
@@ -30,7 +30,7 @@ rightClickMain = {
             fill(220);
             if (mouseX > this.x && mouseX < this.x + 150 && mouseY > this.y + 35 && mouseY < this.y + 70) {
                 fill(200)
-                if (mouseIsPressed) {
+                if (mouseIsPressed && mouseButton == LEFT) {
                     winSettings[1].open = true;
                     this.clicked = false;
                 }

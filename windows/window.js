@@ -1,8 +1,10 @@
 var windows = {
     run: function(x,y,w,h,doOnClose = function() {}, insideContent = function() {}, id = 0) {
         
-        if (winSettings[id].open == false) {
-            return;
+        
+        if (winSettings[id].initDone == false) {
+            winSettings[id].init();
+            winSettings[id].initDone = true;
         }
         if (winSettings[id].fullScreen == true) {
                 winSettings[id].x = 0;
@@ -56,11 +58,17 @@ var windows = {
                 selector.selectAble = false;
             }
         
-        if (winSettings[id].x > 990) {
-            winSettings[id].x = 990;
+        if (winSettings[id].x > 960) {
+            winSettings[id].x = 960;
         }
         if (winSettings[id].y > 920) {
             winSettings[id].y = 920;
+        }
+        if (winSettings[id].x < 0) {
+            winSettings[id].x = 0;
+        }
+        if (winSettings[id].y < 0) {
+            winSettings[id].y = 0;
         }
         fill(150,255,10);
         ellipse(30,10,15,15);
