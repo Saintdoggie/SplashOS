@@ -21,8 +21,10 @@ var windows = {
             winSettings[id].x = mouseX;
             winSettings[id].y = mouseY;
             selector.selectAble = false;
+            selector.selectAble = false;
             if (mouseIsPressed === false) {
                 this.followMode = false;
+                selector.selectAble = false;
             }
         }
         insideContent();

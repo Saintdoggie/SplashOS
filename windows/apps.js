@@ -6,7 +6,8 @@ var winSettings = {
         x: 200,
         y: 200,
         initDone: false,
-        theme: "blue",
+        theme: "white",
+        colorTheme: "blue",
         acTheme: "white",
         init: function() {
             this.page = "none";
@@ -91,46 +92,109 @@ var winSettings = {
             if (this.page == "personalization") {
                 textSize(25);
                 fill(opposingColor)
-                text("Set color Theme",this.width / 2 - 100,50);
-                fill(255,0,0);
-                if (mouseX > (this.width / 3) + this.x && mouseX < (this.width / 3) + 60 + this.x && mouseY > 80 + this.y && mouseY < 140 + this.y) {
-                    fill(200,0,0); 
+                text("Set Main Theme",this.width / 2 - 55 ,50);
+                fill(0);
+                if (mouseX > (this.width / 1.5) + this.x && mouseX < (this.width / 1.5) + 60 + this.x && mouseY > 80 + this.y && mouseY < 140 + this.y) {
+                    fill(50,50,50); 
                     if (mouseIsClicked) {
-                        themes.set("red");
-                        this.theme = "red";
+                        themes.change("black");
+                        this.theme = "black";
                         
                     }
                 } 
-                if (this.theme == "red") {
-                    stroke(opposingColor);
+                if (this.theme == "black") {
+                    stroke(0,0,200);
                     strokeWeight(3);
                 }
                 else {
-                    noStroke();
+                    stroke(200,0,0);
+                    strokeWeight(3);
+                }
+                rect(this.width / 1.5,80,60,60,5);
+
+                fill(255);
+                if (mouseX > (this.width / 3) + this.x && mouseX < (this.width / 3) + 60 + this.x && mouseY > 80 + this.y && mouseY < 140 + this.y) {
+                    fill(200,200,200); 
+                    if (mouseIsClicked) {
+                        themes.change("white");
+                        this.theme = "white";
+                    }
+                } 
+                if (this.theme == "white") {
+                    stroke(0,0,200);
+                    strokeWeight(3);
+                }
+                else {
+                    stroke(200,0,0);
+                    strokeWeight(3);
                 }
                 rect(this.width / 3,80,60,60,5);
+                noStroke()
+
+                fill(opposingColor);
+                text("Set Color Theme",this.width / 2 - 50, 220);
+
+                fill(255,0,0);
+                if (mouseX > (this.width / 3) + this.x && mouseX < (this.width / 3) + 60 + this.x && mouseY > 240 + this.y && mouseY < 310 + this.y) {
+                    fill(200,0,0); 
+                    if (mouseIsClicked) {
+                        themes.set("red");
+                        this.colorTheme = "red";
+                    }
+                } 
+                if (this.colorTheme == "red") {
+                    stroke(theme[1] - 20);
+                    strokeWeight(5);
+                }
+                else {
+                    noStroke()
+                }
+                rect(this.width / 3,240,60,60,5);
+                noStroke()
 
                 fill(0,0,255);
-                if (mouseX > (this.width / 2) + this.x && mouseX < (this.width / 2) + 60 + this.x && mouseY > 80 + this.y && mouseY < 140 + this.y) {
+                if (mouseX > (this.width / 2) + this.x && mouseX < (this.width / 2) + 60 + this.x && mouseY > 240 + this.y && mouseY < 310 + this.y) {
                     fill(0,0,200); 
                     if (mouseIsClicked) {
                         themes.set("blue");
-                        this.theme = "blue";
+                        this.colorTheme = "blue";
                     }
                 } 
-                if (this.theme == "blue") {
-                    stroke(opposingColor);
-                    strokeWeight(3);
+                if (this.colorTheme == "blue") {
+                    stroke(theme[1] - 20);
+                    strokeWeight(5);
                 }
                 else {
-                    noStroke();
+                    noStroke()
                 }
-                rect(this.width / 2,80,60,60,5);
+                rect(this.width / 2,240,60,60,5);
                 noStroke()
+                
+                fill(100,255,100);
+                if (mouseX > (this.width / 1.5) + this.x && mouseX < (this.width / 1.5) + 60 + this.x && mouseY > 240 + this.y && mouseY < 310 + this.y) {
+                    fill(75,200,75); 
+                    if (mouseIsClicked) {
+                        themes.set("green");
+                        this.colorTheme = "green";
+                    }
+                } 
+                if (this.colorTheme == "green") {
+                    stroke(theme[1] - 20);
+                    strokeWeight(5);
+                }
+                else {
+                    noStroke()
+                }
+                rect(this.width / 1.5,240,60,60,5);
+                noStroke()
+
+
             }
             
             if (this.page == "apps") {
-                rect(this.width / 2 - 40, 50, 80,80,5);
+                fill(opposingColor)
+                text("this will be made later, so go away(until later)", this.width / 2 - 100, 50);
+                //rect(this.width / 2 - 40, 50, 80,80,5);
 
             }
 

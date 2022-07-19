@@ -41,14 +41,12 @@ rightClickMain = {
             textSize(20);
             text("Debug",this.x + 15,this.y + 60);
         }
-        else {
-            selector.selectAble = true;
-        }
         if (mouseIsClicked) {
             if (mouseX > this.x && mouseX < this.x + 150 && mouseY > this.y && mouseY < this.y + 70) {}
             else {
                 this.timeHeld = 0;
                 this.clicked = false;
+                selector.selectAble = false;
             }
         }
         if (mouseIsPressed == false) {
