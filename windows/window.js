@@ -75,6 +75,7 @@ var windows = {
         fill(150,255,10);
         ellipse(30,10,15,15);
         resetMatrix();
+        console.log(winSettings[id].followMode);
         
 },
     id: [],
@@ -84,6 +85,9 @@ var windows = {
             if (winSettings[id].open == true) {
                 windows.run(id);    
             }        
+            else {
+                winSettings[id].followMode = false;
+            }
             
         }
     }
