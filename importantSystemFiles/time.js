@@ -18,7 +18,6 @@ function TimeDisplay() {
     fill(0);
     textSize(25);
     if (m < 10) {
-        console.log("hello")
         if (isAM == true) {
             text(h + ":0" + m + " AM", 865,978);
         }
@@ -33,9 +32,7 @@ function TimeDisplay() {
         if (isAM == false) {
             text(h + ":" + m + " PM", 865,978);
         }
-        console.log("hello 1")
     }
-    console.log("hello")
 
     
 }

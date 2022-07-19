@@ -21,16 +21,16 @@ var winSettings = {
             //start innercontent
             if (acTheme == "black") {
                 fill(theme[1] + 20);
+                stroke(theme[1] + 20);
+
             }
             if (acTheme == "white") {
                 fill(theme[1] - 20);
+                stroke(theme[1] - 40);
             }
 
-            if (mouseIsPressed) {
-                this.page = "personalization";
-            }
-
-            line(100,100,100, this.height);
+            line(150,10,150, this.height);
+            noStroke();
             if (mouseX > 3 + this.x && mouseX < 143 + this.x && mouseY > 30 + this.y && mouseY < 60 + this.y) {
                 if (acTheme == "black") {
                     fill(theme[1] + 30);
@@ -39,7 +39,7 @@ var winSettings = {
                     fill(theme[1] - 30);
                 }
 
-                if (mouseIsPressed) {
+                if (mouseIsClicked) {
                     this.page = "personalization";
                 }
             }
@@ -56,6 +56,38 @@ var winSettings = {
             textSize(15)
             text("Personalization",20,50)
 
+            if (acTheme == "black") {
+                fill(theme[1] + 20);
+
+            }
+            if (acTheme == "white") {
+                fill(theme[1] - 20);
+            }
+            if (mouseX > 3 + this.x && mouseX < 143 + this.x && mouseY > 70 + this.y && mouseY < 100 + this.y) {
+                if (acTheme == "black") {
+                    fill(theme[1] + 30);
+                }
+                if (acTheme == "white") {
+                    fill(theme[1] - 30);
+                }
+
+                if (mouseIsClicked) {
+                    this.page = "apps";
+                }
+            }
+            if (this.page == "apps") {
+                if (acTheme == "black") {
+                    fill(theme[1] + 50);
+                }
+                if (acTheme == "white") {
+                    fill(theme[1] - 50);
+                }
+            }
+            rect(3,70,140,30,5);
+            fill(opposingColor)
+            textSize(15)
+            text("Apps",20,90)
+
             if (this.page == "personalization") {
                 textSize(25);
                 fill(opposingColor)
@@ -63,7 +95,7 @@ var winSettings = {
                 fill(255,0,0);
                 if (mouseX > (this.width / 3) + this.x && mouseX < (this.width / 3) + 60 + this.x && mouseY > 80 + this.y && mouseY < 140 + this.y) {
                     fill(200,0,0); 
-                    if (mouseIsPressed) {
+                    if (mouseIsClicked) {
                         themes.set("red");
                         this.theme = "red";
                         
@@ -81,7 +113,7 @@ var winSettings = {
                 fill(0,0,255);
                 if (mouseX > (this.width / 2) + this.x && mouseX < (this.width / 2) + 60 + this.x && mouseY > 80 + this.y && mouseY < 140 + this.y) {
                     fill(0,0,200); 
-                    if (mouseIsPressed) {
+                    if (mouseIsClicked) {
                         themes.set("blue");
                         this.theme = "blue";
                     }
@@ -95,6 +127,11 @@ var winSettings = {
                 }
                 rect(this.width / 2,80,60,60,5);
                 noStroke()
+            }
+            
+            if (this.page == "apps") {
+                rect(this.width / 2 - 40, 50, 80,80,5);
+
             }
 
             //end inner content

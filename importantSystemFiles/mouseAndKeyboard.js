@@ -19,9 +19,16 @@ function mouse() {
 }
 
 var keys = [];
-    function keyPressed() {
-        keys[keys] = true;
-    }
-    function keyReleased() {
-        keys[keys] = false;
-    }
+function keyPressed() {
+    keys[keys] = true;
+}
+function keyReleased() {
+    keys[keys] = false;
+}
+
+var mouseIsClicked = false;
+
+function mouseClicked() {
+    mouseIsClicked = true;
+}
+

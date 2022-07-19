@@ -15,7 +15,7 @@ var taskbar = {
         }
         if (mouseX > 10 && mouseX < 110 && mouseY > 950 && mouseY < 990) {
             fill(150)
-            if (mouseIsPressed) {
+            if (mouseIsClicked) {
                 if (this.barTime > 10 && this.barThing == false && mouseButton == LEFT) {
                     this.barThing = true;
                     this.boxTyped = "";
@@ -46,7 +46,7 @@ var taskbar = {
             else {
                 this.mouseOverBar = false;
             }
-            if (mouseIsPressed && this.mouseOverBar == false) {
+            if (mouseIsClicked && this.mouseOverBar == false) {
                 
                 this.barThing = false;
             
