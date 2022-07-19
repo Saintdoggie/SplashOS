@@ -9,6 +9,7 @@ var winSettings = {
         theme: "white",
         colorTheme: "blue",
         acTheme: "white",
+        followMode: false,
         init: function() {
             this.page = "none";
         },
@@ -217,6 +218,7 @@ var winSettings = {
         height: 200,
         x: 400,
         y: 400,
+        followMode: false,
         innerContent: function() {
             fill(255)
             stroke(0)
