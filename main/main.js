@@ -21,16 +21,16 @@ function draw()
             mouse()
         break;
         case true:
-        background(0,0,255);
-        selector.selectArea();
-        windows.ids()
+            background(backgroundColor[0], backgroundColor[1], backgroundColor[2]);
+            selector.selectArea();
+            windows.ids()
 
-        taskbar.box();
-        taskbar.bar();
-        TimeDisplay();
-        rightClickMain.rightClick()
-        mouse()
-        //not much here...
+            taskbar.box();
+            taskbar.bar();
+            TimeDisplay();
+            rightClickMain.rightClick()
+            mouse()
+            //not much here...
         break;
     }
 

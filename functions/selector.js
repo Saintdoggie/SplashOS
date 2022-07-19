@@ -13,8 +13,12 @@ var selector = {
                     selectWidth = mouseX-selectX;
                     selectHeight = mouseY-selectY;
                 }
-                fill(0,255,255,200);
-                stroke(0,0,200);
+                if (acTheme == "white") {
+                    fill(theme[0] - 150, theme[1] - 150, theme[2] - 150, 200);
+                }
+                if (acTheme == "black") {
+                    fill(theme[0] + 150, theme[1] + 150, theme[2] + 150, 200);
+                }
                 strokeWeight(2);
 
                 rect(selectX, selectY, selectWidth, selectHeight, 2);
