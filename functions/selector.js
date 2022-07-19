@@ -14,10 +14,7 @@ var selector = {
                     selectHeight = mouseY-selectY;
                 }
                 if (acTheme == "white") {
-                    fill(theme[0] - 150, theme[1] - 150, theme[2] - 150, 200);
-                }
-                if (acTheme == "black") {
-                    fill(theme[0] + 150, theme[1] + 150, theme[2] + 150, 200);
+                    fill(0,0,0, 150);
                 }
                 strokeWeight(2);
 
