@@ -21,7 +21,6 @@ var windows = {
             winSettings[id].x = mouseX;
             winSettings[id].y = mouseY;
             selector.selectAble = false;
-            selector.selectAble = false;
             if (mouseIsPressed === false) {
                 winSettings[id].followMode = false;
                 selector.selectAble = false;
@@ -53,10 +52,11 @@ var windows = {
         }
         
         else {}
-            if (mouseX > winSettings[id].x && mouseX < winSettings[id].x + winSettings[id].w && mouseY > winSettings[id].y && mouseY < winSettings[id].y + 20 && mouseIsPressed) {
+            if (mouseX > winSettings[id].x && mouseX < winSettings[id].x + winSettings[id].width && mouseY > winSettings[id].y && mouseY < winSettings[id].y + 20 && mouseIsPressed) {
                 winSettings[id].followMode = true;
             }
-            if (mouseX > winSettings[id].x && mouseX < winSettings[id].x + winSettings[id].w && mouseY > winSettings[id].y && mouseY < winSettings[id].y + winSettings[id].h && mouseIsPressed) {
+            if (mouseX > winSettings[id].x && mouseX < winSettings[id].x + winSettings[id].width && mouseY > winSettings[id].y && mouseY < winSettings[id].y + winSettings[id].h && mouseIsPressed) {
+                winSettings[id].followMode = true;
                 selector.selectAble = false;
             }
         
