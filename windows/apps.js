@@ -372,18 +372,110 @@ var apps = {
         x: 200,
         y: 200,
         followMode: false,
-        open: false,
+        open: true,
         fullScreen: false,
         initDone: false,
         main: false,
+        number1: 0,
+        number2: 0, 
         init: function() {
 
         },
         innerContent: function() {
+            fill(theme[0], theme[1], theme[2], 220);
+            rect(0,0,this.width,this.height);
+            
+            //plus button
+
+            fill(opposingColor);
+            if (mouseX > this.x + this.width / 6 && mouseX < this.x + this.width / 6 + 80 && mouseY > this.y + 150 && mouseY < this.y + 190) {
+                if (acTheme == "black") {
+                    fill(opposingColor[0] - 100);
+                }
+                if (acTheme == "white") {
+                    fill(opposingColor[0] + 100);
+                }
+                if (mouseIsClicked) {
+                    this.equation = "+";
+                }
+            }
+            rect(this.width / 6,150,80,40,5);
             fill(theme);
-            rect(0,0,this.width,this.height)
-            fill(opposingColor)
-            text("coming soon...", this.width / 2 - 20, 50)
+            textSize(35)
+            text("+",this.width / 6 + 25,183);
+
+            //minus button
+
+            fill(opposingColor);
+            if (mouseX > this.x + this.width / 3 && mouseX < this.x + this.width / 3 + 80 && mouseY > this.y + 150 && mouseY < this.y + 190) {
+                if (acTheme == "black") {
+                    fill(opposingColor[0] - 100);
+                }
+                if (acTheme == "white") {
+                    fill(opposingColor[0] + 100);
+                }
+                if (mouseIsClicked) {
+                    this.equation = "-";
+                }
+            }
+            rect(this.width / 3,150,80,40,5);
+            fill(theme);
+            textSize(50)
+            text("-",this.width / 3 + 30,183);
+
+            //multiply button
+
+            fill(opposingColor);
+            if (mouseX > this.x + this.width / 2 && mouseX < this.x + this.width / 2 + 80 && mouseY > this.y + 150 && mouseY < this.y + 190) {
+                if (acTheme == "black") {
+                    fill(opposingColor[0] - 100);
+                }
+                if (acTheme == "white") {
+                    fill(opposingColor[0] + 100);
+                }
+                if (mouseIsClicked) {
+                    this.equation = "*";
+                }
+            }
+            rect(this.width / 2,150,80,40,5);
+            fill(theme);
+            textSize(40)
+            text("*",this.width / 2 + 27,190);
+
+            //divide button
+
+            fill(opposingColor);
+            if (mouseX > this.x + this.width / 1.5 && mouseX < this.x + this.width / 1.5 + 80 && mouseY > this.y + 150 && mouseY < this.y + 190) {
+                if (acTheme == "black") {
+                    fill(opposingColor[0] - 100);
+                }
+                if (acTheme == "white") {
+                    fill(opposingColor[0] + 100);
+                }
+                if (mouseIsClicked) {
+                    this.equation = "/";
+                }
+            }
+            rect(this.width / 1.5,150,80,40,5);
+            fill(theme);
+            textSize(35)
+            text("/",this.width / 1.5 + 30,183);
+            
+
+            //buttons
+
+
+
+            //calculations
+
+            switch(this.equation) {
+                case "+":
+                //console.log(this.number1 + this.number2)
+
+                break;
+            }
+            
+
         },
         doOnClose: function() {
             this.open = false;
