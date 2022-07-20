@@ -20,10 +20,10 @@ function mouse() {
 
 var keys = [];
 function keyPressed() {
-    keys[keys] = true;
+    keys[keyCode] = true;
 }
 function keyReleased() {
-    keys[keys] = false;
+    keys[keyCode] = false;
 }
 
 var mouseIsClicked = false;

@@ -1,4 +1,4 @@
-var winSettings = {
+var apps = {
     0: {
         name: "settings",
         width: 600,
@@ -10,6 +10,7 @@ var winSettings = {
         colorTheme: "blue",
         acTheme: "white",
         followMode: false,
+        main: false,
         init: function() {
             this.page = "none";
         },
@@ -205,28 +206,45 @@ var winSettings = {
         },
         doOnClose: function() {
             this.page = "none";
-            winSettings[0].open = false;
-            winSettings[0].fullScreen = false;
+            apps[0].open = false;
+            apps[0].fullScreen = false;
         },
         open: false,
         fullScreen: false,
 
     },
     1: {
-        name: "window",
+        name: "apps",
         width: 200,
         height: 200,
-        x: 400,
-        y: 400,
+        x: 200,
+        y: 200,
         followMode: false,
         innerContent: function() {
             fill(255)
-            stroke(0)
+            noStroke()
             rect(0,0,this.width,this.height);
-            noStroke();
+            fill(opposingColor)
+            text("Snake", this.width / 4 - 25, 120);
+            fill(opposingColor)
+            if (mouseX > this.width / 4 - 25 + this.x && mouseX < this.width / 4 + 45 && mouseY > this.y + 150 && mouseY < this.y + 220) {
+                fill(255)
+                if (acTheme == "black") {
+                    fill(opposingColor[1] + 20);
+                }
+                if (acTheme == "white") {
+                    fill(opposingColor[1] - 20);
+                }
+                if (mouseIsClicked) {
+
+                }
+
+            }
+            rect(this.width / 4 - 25, 150,70,50, 5);
+            
         },
         doOnClose: function() {
-            winSettings[1].open = false;
+            apps[1].open = false;
         },
         open: false,
         fullScreen: false,
@@ -234,6 +252,177 @@ var winSettings = {
         init: function() {
 
         },
+        
     },
+    2: {
+        name: "snake",
+        width: 300,
+        height: 300,
+        x: 200,
+        y: 200,
+        followMode: false,
+        open: false,
+        fullScreen: false,
+        initDone: false,
+        main: false,
+        init: function() {
+            this.snakeX = 200;
+            this.snakeY = 200;
+            this.pSnakeX = [200,200];
+            this.pSnakeY = [200,200];
+            this.timeX = 0;
+            this.timeY = 0;
+            this.dir = 0;
+            this.snakeLength = 2; 
+            this.showSnake = function() {
+                for (let i = this.snakeLength; i--; i <= 0) {
+                    
+                    fill(255,0,0);
+                    //rect(this.pSnakeX[i],this.pSnakeY[i],20,20);
+
+                    fill(255,0,0);
+                    //rect(this.pSnakeX[i-10],this.pSnakeY[i-10],20,20);
+                }
+                this.pSnakeX = this.pSnakeX.slice(-1, this.snakeLength+ 15);
+                this.pSnakeY = this.pSnakeY.slice(-1, this.snakeLength+ 15);
+                
+            }
+        },
+        innerContent: function() {
+            return;
+
+            fill(0)
+            rect(0,0,this.width,this.height, 5);
+
+            this.fullScreen = true;
+            if (this.timeX > 0) {
+                this.timeX--;
+            } 
+
+            if (keys[68]|| keys[39]) {
+                this.dir = 1;
+            }
+            else if (keys[65] || keys[37]) {
+                this.dir = 2;
+            }
+
+            if (keys[87]|| keys[38]) {
+                this.dir = 3;
+            }
+            else if (keys[83] || keys[40]) {
+                this.dir = 4;
+            }
+
+            if (this.dir == 1 && this.timeX <= 0) {
+                this.snakeX+=20;
+                this.timeX = 5;
+                this.pSnakeX.push(this.snakeX);
+            }
+
+            else if (this.dir == 2 && this.timeX <= 0) {
+                this.snakeX-=20;
+                this.timeX = 5;
+                this.pSnakeX.push(this.snakeX);
+            }
+            else if (this.dir == 3 && this.timeX <= 0) {
+                this.snakeY-=20;
+                this.timeX = 5;
+                this.pSnakeY.push(this.snakeY);
+
+            }
+            else if (this.dir == 4 && this.timeX <= 0) {
+                this.snakeY+=20;
+                this.timeX = 5;
+                this.pSnakeY.push(this.snakeY);
+            }
+    
+            if (this.snakeX < this.x / 2) {
+                this.snakeX = this.width - 20;
+            }
+            if (this.snakeX + 20 > this.width) {
+                this.snakeX = this.x / 2;
+            }
+
+            if (this.snakeY < this.y / 2) {
+                this.snakeY = this.height - 20;
+            }
+            if (this.snakeY + 20 > this.height) {
+                this.snakeY = this.y / 2;
+            }
+            fill(255,0,0);
+            rect(this.snakeX,this.snakeY,20,20);
+
+            this.showSnake()
+
+            textSize(30)
+            text("Score: " + this.snakeLength,10,50);
+            //console.log(this.pSnakeX + ", " + this.pSnakeY)
+        },
+        doOnClose: function() {
+            this.open = false;
+        },
+
+    },
+    3: {
+        name: "calculator",
+        width: 300,
+        height: 300,
+        x: 200,
+        y: 200,
+        followMode: false,
+        open: false,
+        fullScreen: false,
+        initDone: false,
+        main: false,
+        init: function() {
+
+        },
+        innerContent: function() {
+            fill(theme);
+            rect(0,0,this.width,this.height)
+            fill(opposingColor)
+            text("coming soon...", this.width / 2 - 20, 50)
+        },
+        doOnClose: function() {
+            this.open = false;
+        },
+        backgroundWorker: function() {
+        },
+
+    },
+    4: {
+        name: "task manager",
+        width: 300,
+        height: 300,
+        x: 200,
+        y: 200,
+        followMode: false,
+        open: false,
+        fullScreen: false,
+        initDone: false,
+        main: false,
+        init: function() {
+            this.openApplications = [];
+        },
+        innerContent: function() {
+            fill(theme);
+            rect(0,0,this.width,this.height)
+            for (let id = windows.id.length; id--; id === 0) {
+                if (apps[id].open == true) {
+                    this.openApplications.push(apps[id].name);                    
+                }
+            }
+            fill(opposingColor)
+            text(this.openApplications,50,50);
+            this.openApplications = [];
+        },
+        doOnClose: function() {
+            this.open = false;
+        },
+        backgroundWorker: function() {
+            
+        },
+
+    }
     
 }

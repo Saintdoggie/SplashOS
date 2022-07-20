@@ -13,6 +13,7 @@ function setup()
 
 function draw() 
 {
+    loggedIn = true
     switch (loggedIn) {
         case false:
             background(220)
@@ -29,6 +30,7 @@ function draw()
             TimeDisplay();
             rightClickMain.rightClick()
             mouse()
+
             //not much here...
         break;
     }

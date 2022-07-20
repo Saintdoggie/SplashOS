@@ -73,16 +73,15 @@ var taskbar = {
             keyIsPressed = false
         }
         if (keyCode === ENTER && keys) {
-            if (this.boxTyped.charAt(0).toLowerCase() == "#") {
-                if (this.boxTyped.slice(2,this.boxTyped.length).toLowerCase() == "settings") {
-                    winSettings[0].open = true;
-                }
-                if (this.boxTyped.slice(2,this.boxTyped.length).toLowerCase() == "debug") {
-                    winSettings[1].open = true;
+            for (let id = windows.id.length; id--; id === 0) {
+                if (this.boxTyped == apps[id].name) {
+                    apps[id].open = true;
                 }
             }
+        
         }
         fill(255,255,255,200);
+        textSize(25)
         text(this.boxTyped.toLowerCase() + "|",this.x + 30, this.y + 50)
 
     }
