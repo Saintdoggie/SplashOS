@@ -13,9 +13,8 @@ var selector = {
                     selectWidth = mouseX-selectX;
                     selectHeight = mouseY-selectY;
                 }
-                if (acTheme == "white") {
                     fill(0,0,0, 150);
-                }
+                
                 strokeWeight(2);
 
                 rect(selectX, selectY, selectWidth, selectHeight, 2);

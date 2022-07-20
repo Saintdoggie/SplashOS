@@ -1,6 +1,7 @@
 var apps = {
     0: {
         name: "settings",
+        taskName: "Settings",
         width: 600,
         height: 600,
         x: 200,
@@ -256,6 +257,7 @@ var apps = {
     },
     2: {
         name: "snake",
+        taskName: "snake.exe",//perfect
         width: 300,
         height: 300,
         x: 200,
@@ -289,7 +291,6 @@ var apps = {
             }
         },
         innerContent: function() {
-            return;
 
             fill(0)
             rect(0,0,this.width,this.height, 5);
@@ -365,6 +366,7 @@ var apps = {
     },
     3: {
         name: "calculator",
+        taskName: "Calculator",
         width: 300,
         height: 300,
         x: 200,
@@ -392,6 +394,7 @@ var apps = {
     },
     4: {
         name: "task manager",
+        taskName: "Task Manager", 
         width: 300,
         height: 300,
         x: 200,
@@ -409,11 +412,22 @@ var apps = {
             rect(0,0,this.width,this.height)
             for (let id = windows.id.length; id--; id === 0) {
                 if (apps[id].open == true) {
-                    this.openApplications.push(apps[id].name);                    
+                    if (apps[id].taskName == undefined) {
+                        this.openApplications.push(apps[id].name);
+                    }   
+                    else {
+                        this.openApplications.push(apps[id].taskName);
+
+                    }                 
                 }
             }
             fill(opposingColor)
-            text(this.openApplications,50,50);
+            textSize(25)
+            for (let i = this.openApplications.length; i--; i <= 0) {
+                text(i + 1 + " " + this.openApplications[i],10,(50 * i) + 100);
+            }
+            text(0 + " System", 10,50)
+            rightClickMain.addRightClick(10 + this.x,50 + this.y,50,25,"kill", function() {})
             this.openApplications = [];
         },
         doOnClose: function() {
