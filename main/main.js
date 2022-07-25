@@ -1,4 +1,4 @@
-
+// p5s.js main file
 
 function setup() 
 {
@@ -13,6 +13,8 @@ function setup()
 
 function draw() 
 {
+    resizeCanvas(windowWidth, windowHeight);
+
     loggedIn = true
     switch (loggedIn) {
         case false:
