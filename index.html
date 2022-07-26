@@ -1,28 +1,20 @@
 
 <!DOCTYPE html>
 <html>
- 
     <head>
-        <meta charset="utf-8">
-        <title>ThingOS</title>
-        <script src="p5/p5.js"></script>
-        <script src="main/main.js"></script>
-        <script src="functions/taskbar.js"></script>
-        <script src="functions/selector.js"></script>
-        <script src="importantSystemFiles/logIn.js"></script>
-        <script src="importantSystemFiles/mouseAndKeyboard.js"></script>
-        <script src="importantSystemFiles/time.js"></script>
-        <script src="rightClick/rightClickMain.js"></script>
-        <script src="functions/general.js"></script>
-        <script src="windows/window.js"></script>
-        <script src="windows/apps.js"></script>
-        <script src="themes/themeManagement.js"></script>
-        <link rel="stylesheet" href="styles.css">
-
-
+        <link rel="stylesheet" href="css.css">
     </head>
     <body>
         
-            
+        if a window doesn't open check popup settings for this website <br>
+        <button onclick="openWindow()">new window</button>
+        
+        <script language="javascript">
+            var mainWindow = window.open("thingOS/index.html", "thingOS", "directories=no,titlebar=no,toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=no,width=1000,height=1000");
+            function openWindow() {
+                window.open("thingOS/index.html", "thingOS", "directories=no,titlebar=no,toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=no,width=1000,height=1000");
+            }
+        </script>
+    </body>            
     
 </html>

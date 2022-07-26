@@ -15,7 +15,6 @@ function draw()
 {
     resizeCanvas(windowWidth, windowHeight);
 
-    loggedIn = true
     switch (loggedIn) {
         case false:
             background(220)
