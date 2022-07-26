@@ -2,7 +2,8 @@ var loggedIn = false;
     let logTyped = "";
     var logIn = function() {
         if ('virtualKeyboard' in navigator) {
-            console.log("hello")
+            fill(0)
+            text("mobile", 10,10)
             navigator.virtualKeyboard.overlaysContent = true;
         }
         fill(0)
