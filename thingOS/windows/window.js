@@ -16,8 +16,8 @@ var windows = {
         if (apps[id].fullScreen == true) {
                 apps[id].x = 0;
                 apps[id].y = 0;
-                apps[id].width = 1000;
-                apps[id].height = 940;
+                apps[id].width = width;
+                apps[id].height = height - 60;
         }
         if (apps[id].fullScreen == false) {
             apps[id].width = 600;
@@ -68,11 +68,11 @@ var windows = {
                 selector.selectAble = false;
             }
         
-        if (apps[id].x > 960) {
-            apps[id].x = 960;
+        if (apps[id].x > width - 40) {
+            apps[id].x = width - 40;
         }
-        if (apps[id].y > 920) {
-            apps[id].y = 920;
+        if (apps[id].y > height - 80) {
+            apps[id].y = height - 80;
         }
         if (apps[id].x < 0) {
             apps[id].x = 0;

@@ -14,6 +14,7 @@ var apps = {
         main: false,
         init: function() {
             this.page = "none";
+            
         },
         innerContent: function() {
             fill(theme[0] - 20)
@@ -198,6 +199,20 @@ var apps = {
                 fill(opposingColor)
                 text("this will be made later, so go away(until later)", this.width / 2 - 100, 50);
                 //rect(this.width / 2 - 40, 50, 80,80,5);
+
+            }
+            if (this.page == "display") {
+                fill(opposingColor);
+                textSize(20);
+                text("Display Settings", this.width / 2 - 30, 50);
+                text("Refresh Rate", this.width / 2 - 90, 120);
+                if (acTheme == "white") {
+                    fill(theme[0] + 20)
+                }
+                if (acTheme == "black") {
+                    fill(theme[0] - 20)
+                }
+                rect(this.width / 2 - 100, 150, 120,80,5);
 
             }
 

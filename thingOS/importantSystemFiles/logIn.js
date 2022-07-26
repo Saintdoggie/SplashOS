@@ -4,10 +4,10 @@ var loggedIn = false;
         
         fill(0)
         textSize(50)
-        text("Please Log In", 330,200)
-        rect(200,300,600,200,10);
+        text("Please Log In", width / 2 - 170,200)
+        rect(width / 2 - 300,300,600,200,10);
         fill(255)
-        rect(300,350,400,100,10)
+        rect(width / 2 - 200,350,400,100,10)
         textSize(12)
         
         if (keyCode === 8 && keyIsPressed) {
@@ -28,6 +28,6 @@ var loggedIn = false;
         }
         fill(0)
         textSize(40)
-        text(logTyped.toLowerCase() + "|",320,415);
+        text(logTyped.toLowerCase() + "|",width / 2 - 180,415);
         textSize(12)
         }

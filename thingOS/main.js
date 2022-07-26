@@ -5,7 +5,8 @@ function setup()
     const canvas = createCanvas(1000, 1000)
     canvas.elt.addEventListener("contextmenu", (e) => e.preventDefault())
     noCursor();
-    frameRate(60);
+    var fps = 60;
+    frameRate(fps);
     taskbar.init()
 
 }
@@ -14,7 +15,6 @@ function setup()
 function draw() 
 {
     resizeCanvas(windowWidth, windowHeight);
-
     switch (loggedIn) {
         case false:
             background(220)

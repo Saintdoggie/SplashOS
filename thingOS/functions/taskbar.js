@@ -8,12 +8,12 @@ var taskbar = {
     },
     bar: function() {
         fill(0,0,0,200)
-        rect(0,940,1000,60); 
+        rect(0,height - 60,width,60); 
         fill(200)
         if (this.barTime < 12) {
             this.barTime++;
         }
-        if (mouseX > 10 && mouseX < 110 && mouseY > 950 && mouseY < 990) {
+        if (mouseX > 10 && mouseX < 110 && mouseY > height - 50 && mouseY < height - 10) {
             fill(150)
             if (mouseIsClicked) {
                 if (this.barTime > 10 && this.barThing == false && mouseButton == LEFT) {
@@ -30,17 +30,17 @@ var taskbar = {
             }
             
         }
-        rect(10,950,100,40,5)
+        rect(10,height - 50,100,40,5)
         if (this.barThing == false) {
             this.boxTyped = "";
         }
     },
     box: function() {
         if (this.barThing == true) {
-            if (this.y > 700) {
+            if (this.y > height - 300) {
                 this.y-=30;
             }
-            if (mouseX > 10 && mouseX < 110 && mouseY > 950 && mouseY < 990) {
+            if (mouseX > 10 && mouseX < 110 && mouseY > height - 50 && mouseY < height - 10) {
                 this.mouseOverBar = true;
             }
             else {
@@ -56,7 +56,7 @@ var taskbar = {
                 
         }
         else {
-            if (this.y < 1100) {
+            if (this.y < height + 100) {
                 this.y+=30;
             }
         }
@@ -66,11 +66,11 @@ var taskbar = {
         rect(this.x + 20, this.y + 20, 250,50,4);
         if (keyCode === 8 && keyIsPressed) {
             this.boxTyped = this.boxTyped.slice(0,this.boxTyped.length-1);
-            keyIsPressed = false
+            keyIsPressed = false;
         }
         if (keyCode !== 8 && this.boxTyped.length < 15 && keyCode !== ENTER && keyIsPressed && blockedChars() == false) {
             this.boxTyped+=key.toString();
-            keyIsPressed = false
+            keyIsPressed = false;
         }
         if (keyCode === ENTER && keys) {
             for (let id = windows.id.length; id--; id === 0) {

@@ -11,26 +11,26 @@ function TimeDisplay() {
     m = minute();
 
     fill(200);
-    if (mouseX > 850 && mouseX < 980 && mouseY > 950 && mouseY < 990) {
+    if (mouseX > width - 150 && mouseX < width - 10 && mouseY > height - 50 && mouseY < height - 10) {
         fill(170);
     }
-    rect(850,950,130,40,5);
+    rect(width - 150 ,height - 50,130,40,5);
     fill(0);
     textSize(25);
     if (m < 10) {
         if (isAM == true) {
-            text(h + ":0" + m + " AM", 865,978);
+            text(h + ":0" + m + " AM", width - 135,height - 22);
         }
         if (isAM == false) {
-            text(h + ":0" + m + " PM", 865,978);
+            text(h + ":0" + m + " PM", width - 135,height - 22);
         }
     }
     else {
         if (isAM == true) {
-            text(h + ":" + m + " AM", 865,978);
+            text(h + ":" + m + " AM", width - 135,height - 22);
         }
         if (isAM == false) {
-            text(h + ":" + m + " PM", 865,978);
+            text(h + ":" + m + " PM", width - 135,height - 22);
         }
     }
 
