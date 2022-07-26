@@ -1,7 +1,10 @@
 var loggedIn = false;
     let logTyped = "";
     var logIn = function() {
-        
+        if ('virtualKeyboard' in navigator) {
+            console.log("hello")
+            navigator.virtualKeyboard.overlaysContent = true;
+        }
         fill(0)
         textSize(50)
         text("Please Log In", width / 2 - 170,200)
