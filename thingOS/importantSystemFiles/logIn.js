@@ -6,6 +6,9 @@ var loggedIn = false;
             text("mobile", 10,10)
             navigator.virtualKeyboard.overlaysContent = true;
         }
+        else {
+            console.log("no mobile support")
+        }
         fill(0)
         textSize(50)
         text("Please Log In", width / 2 - 170,200)
