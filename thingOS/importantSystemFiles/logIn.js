@@ -1,13 +1,6 @@
 var loggedIn = false;
     let logTyped = "";
     var logIn = function() {
-        if ('virtualKeyboard' in navigator) {
-            navigator.virtualKeyboard.overlaysContent = true;
-            navigator.virtualKeyboard.show();
-        }
-        else {
-            console.log("no mobile support")
-        }
         fill(0)
         textSize(50)
         text("Please Log In", width / 2 - 170,200)
