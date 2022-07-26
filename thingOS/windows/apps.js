@@ -372,7 +372,7 @@ var apps = {
         x: 200,
         y: 200,
         followMode: false,
-        open: true,
+        open: false,
         fullScreen: false,
         initDone: false,
         main: false,
