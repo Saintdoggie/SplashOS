@@ -6,7 +6,7 @@ function setup()
     canvas.elt.addEventListener("contextmenu", (e) => e.preventDefault())
     noCursor();
     var fps = 60;
-    frameRate(fps);
+    frameRate(144);
     taskbar.init()
     windows.init()
 
