@@ -1,9 +1,26 @@
 var windows = {
     backgroundWorkers: {},
-    run: function(id = 0) {
-        if (apps[id].main == true) {
+    selectedApp: [],
+    allowOnLogIn: false,
+    init: function() {
+        
+        for (let i = Object.keys(apps).length; i--; i <= 0) {
+            apps[i].xPlus = 0;
+            apps[i].yPlus = 0;
             
         }
+        for (let i = Object.keys(apps).length; i--; i <= 0) {
+            apps[i].focused = false;
+            
+        }
+        for (let i = Object.keys(apps).length; i--; i <= 0) {
+            this.id.push(apps[i])
+            
+        }
+
+    },
+    run: function(id) {
+        this.followBlock = false;
         
         if (apps[id].initDone == false) {
             if (apps[id].hasOwnProperty("backgroundWorker") == true) {
@@ -19,18 +36,16 @@ var windows = {
                 apps[id].width = width;
                 apps[id].height = height - 60;
         }
-        if (apps[id].fullScreen == false) {
-            apps[id].width = 600;
-            apps[id].height = 600;
-        }
         translate(apps[id].x,apps[id].y);
-        if (apps[id].followMode === true) {
-            apps[id].x = mouseX;
-            apps[id].y = mouseY;
+        if (apps[id].followMode == true) {
+            //console.log(apps[id].name + ": X: " + apps[id].x + " , " + apps[id].y)
+            apps[id].x = mouseX + apps[id].xPlus;
+            apps[id].y = mouseY + apps[id].yPlus;
             selector.selectAble = false;
-            if (mouseIsPressed === false) {
+            if (mouseIsPressed == false) {
                 apps[id].followMode = false;
                 selector.selectAble = false;
+                console.log(apps[id].name + " stopped moving")
             }
         }
         
@@ -46,26 +61,55 @@ var windows = {
             if (mouseIsPressed) {
                 apps[id].followMode = false;
                 apps[id].doOnClose()
+                console.log(apps[id].name + " closed")
             }
         }
         else if (mouseX > apps[id].x + 25 && mouseX < apps[id].x + 40 && mouseY > apps[id].y + 5 && mouseY < apps[id].y + 20) {
             mouseHand = true;
-            if (mouseIsPressed && apps[id].fullScreen == false) {
+            if (mouseIsClicked && apps[id].fullScreen == false) {
+                console.log(apps[id].name + " fullscreened")
                 apps[id].fullScreen = true;
             }
-            else if (mouseIsPressed && apps[id].fullScreen == true) {
+            else if (mouseIsClicked && apps[id].fullScreen == true) {
                 apps[id].fullScreen = false;
+                console.log(apps[id].name + " not fullscreened")
+
             }
 
         }
         
         else {}
             if (mouseX > apps[id].x && mouseX < apps[id].x + apps[id].width && mouseY > apps[id].y && mouseY < apps[id].y + 20 && mouseIsPressed) {
-                apps[id].followMode = true;
+                for (let i = Object.keys(apps).length; i--; i <= 0) {
+                    if (apps[i].followMode == true) {
+                        this.followBlock = true;
+                        
+                    }
+                    
+                }
+                if (this.followBlock == false) {
+                    apps[id].xPlus = apps[id].x - mouseX;
+                    apps[id].yPlus = apps[id].y - mouseY;
+                    apps[id].followMode = true;
+                    console.log(apps[id].name +  " moving")
+
+                    for (let i = Object.keys(apps).length; i--; i <= 0) {
+                        apps[i].focused = false;   
+                    }
+                    apps[id].focused = true;
+                }
+                
             }
             if (mouseX > apps[id].x && mouseX < apps[id].x + apps[id].width && mouseY > apps[id].y && mouseY < apps[id].y + apps[id].h && mouseIsPressed) {
+                
+                for (let i = Object.keys(apps).length; i--; i <= 0) {
+                    apps[i].focused = false;   
+                }
+                apps[id].focused = true;
                 apps[id].followMode = true;
+                console.log(apps[id].name +  " moving")
                 selector.selectAble = false;
+                 
             }
         
         if (apps[id].x > width - 40) {
@@ -81,7 +125,10 @@ var windows = {
             apps[id].y = 0;
         }
         if (mouseX > apps[id].x && mouseX < apps[id].x + apps[id].width && mouseY > apps[id].y && mouseY < apps[id].y + apps[id].width && mouseIsClicked) {
-            apps[id].main = true;
+            for (let i = Object.keys(apps).length; i--; i <= 0) {
+                apps[i].focused = false;   
+            }
+            apps[id].focused = true;
         }
         fill(150,255,10);
         ellipse(30,10,15,15);
@@ -90,19 +137,30 @@ var windows = {
 },
     id: [],
     ids: function() {
-        this.id = Object.keys(apps)
-        for (let id = this.id.length; id--; id === 0) {
+        for (let id = this.id.length; id--; id <= 0) {
             if (apps[id].open == true) {
-                windows.run(id);    
-            }        
-            else {
-                apps[id].followMode = false;
-            }
-            if (apps[id].hasOwnProperty("backgroundWorker") == true) {
-                apps[id].backgroundWorker()
-            }
+                if (apps[id].open == true && apps[id].focused == false) {
+                        windows.run(id);       
+                }
+                if (apps[id].hasOwnProperty("backgroundWorker") == true) {
+                    apps[id].backgroundWorker()
+                }
             
+            }
         }
+        
+        for (let i = Object.keys(apps).length; i--; i <= 0) {
+            if (apps[i].open == true && apps[i].focused == true) {
+                windows.run(i);    
+            }
+            else if (apps[i].open == false) {
+                apps[i].followMode = false;
+            }
+            if (apps[i].hasOwnProperty("backgroundWorker") == true) {
+                apps[i].backgroundWorker()
+            }  
+        }
+        
     },
     closeApp: function(appName) {
         for (let id = this.id.length; id--; id === 0) {

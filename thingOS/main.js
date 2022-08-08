@@ -1,4 +1,4 @@
-// p5s.js main file
+// p5.js main file
 
 function setup() 
 {
@@ -8,6 +8,7 @@ function setup()
     var fps = 60;
     frameRate(fps);
     taskbar.init()
+    windows.init()
 
 }
 
@@ -19,7 +20,11 @@ function draw()
         case false:
             background(220)
             logIn()
+            if (windows.allowOnLogIn == true) {
+                windows.ids()
+            }
             mouse()
+            
         break;
         case true:
             background(backgroundColor[0], backgroundColor[1], backgroundColor[2]);
