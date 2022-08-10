@@ -27,8 +27,7 @@ function draw()
             
         break;
         case true:
-            fps = frameRate()
-            frameRate(fps)
+            
             background(backgroundColor[0], backgroundColor[1], backgroundColor[2]);
             selector.selectArea();
             windows.ids()
@@ -44,10 +43,3 @@ function draw()
     }
     mouseIsClicked = false;
 }
-
-document.addEventListener("visibilitychange", event => {
-    if (document.visibilityState != "visible") {
-        cursor("ARROW")
-        alert("You have changed a tab and for some reason\nmy code has very low framerate when you do this\n so please reload...")
-    } 
-  })
