@@ -6,7 +6,7 @@ function setup()
     canvas.elt.addEventListener("contextmenu", (e) => e.preventDefault())
     noCursor();
     var fps = 60;
-    frameRate(144);
+    frameRate(500);
     taskbar.init()
     windows.init()
 
@@ -27,6 +27,8 @@ function draw()
             
         break;
         case true:
+            fps = frameRate()
+            frameRate(fps)
             background(backgroundColor[0], backgroundColor[1], backgroundColor[2]);
             selector.selectArea();
             windows.ids()
@@ -43,3 +45,9 @@ function draw()
     mouseIsClicked = false;
 }
 
+document.addEventListener("visibilitychange", event => {
+    if (document.visibilityState != "visible") {
+        cursor("ARROW")
+        alert("You have changed a tab and for some reason\nmy code has very low framerate when you do this\n so please reload...")
+    } 
+  })

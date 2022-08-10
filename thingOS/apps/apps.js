@@ -511,12 +511,27 @@ var apps = {
         fullScreen: false,
         initDone: false,
         main: false,
+        openApplications: [],
         init: function() {
-            this.openApplications = [];
+            
         },
         innerContent: function() {
             fill(theme);
             rect(0,0,this.width,this.height)
+            fill(opposingColor)
+            textSize(25)
+            for (let i = this.openApplications.length; i--; i <= 0) {
+                text(i + 1 + " " + this.openApplications[i],10,(50 * i) + 100);
+            }
+            text(0 + " System", 10,50)
+            rightClickMain.addRightClick(10 + this.x,50 + this.y,50,25,"kill", function() {})
+            this.openApplications = [];
+
+        },
+        doOnClose: function() {
+            this.open = false;
+        },
+        backgroundWorker: function() {
             for (let id = windows.id.length; id--; id === 0) {
                 if (apps[id].open == true) {
                     if (apps[id].taskName == undefined) {
@@ -528,14 +543,44 @@ var apps = {
                     }                 
                 }
             }
-            fill(opposingColor)
-            textSize(25)
-            for (let i = this.openApplications.length; i--; i <= 0) {
-                text(i + 1 + " " + this.openApplications[i],10,(50 * i) + 100);
-            }
-            text(0 + " System", 10,50)
-            rightClickMain.addRightClick(10 + this.x,50 + this.y,50,25,"kill", function() {})
+
+        },
+
+    },
+    5: {
+        name: "debug",
+        taskName: "Debug", 
+        width: 600,
+        height: 600,
+        x: 200,
+        y: 200,
+        followMode: false,
+        open: false,
+        fullScreen: false,
+        initDone: false,
+        main: false,
+        init: function() {
             this.openApplications = [];
+        },
+        innerContent: function() {
+            fill(theme);
+            stroke(2)
+            rect(0,0,this.width,this.height)
+            if (mouseIsPressed && mouseX > this.x && mouseX < this.x + this.width && mouseY > this.y && mouseY < this.y + this.height) {
+                this.followMode = true;
+                this.xPlus = this.x - mouseX;
+                this.yPlus = this.y - mouseY;
+            }
+            else {
+                this.followMode = false;
+            }
+            noStroke()
+            fill(0)
+            textSize(15)
+            text("framerate: " + floor(frameRate()), 50, 50)
+            text("deltaTime " + deltaTime,170,50)
+            text("windows open: " + apps[4].openApplications, 50 ,70)
+            apps[4].openApplications = [];
         },
         doOnClose: function() {
             this.open = false;
@@ -543,7 +588,6 @@ var apps = {
         backgroundWorker: function() {
             
         },
-
-    }
+    },
     
 }

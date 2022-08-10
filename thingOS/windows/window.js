@@ -38,41 +38,37 @@ var windows = {
         }
         translate(apps[id].x,apps[id].y);
         if (apps[id].followMode == true) {
-            //console.log(apps[id].name + ": X: " + apps[id].x + " , " + apps[id].y)
             apps[id].x = mouseX + apps[id].xPlus;
             apps[id].y = mouseY + apps[id].yPlus;
             selector.selectAble = false;
             if (mouseIsPressed == false) {
                 apps[id].followMode = false;
                 selector.selectAble = false;
-                console.log(apps[id].name + " stopped moving")
             }
         }
         
         apps[id].innerContent();
-        fill(200);
-        rect(0,0,apps[id].width,20);
         fill(255, 0, 0);
         ellipse(10,10,15,15);
         
         
         if (mouseX > apps[id].x + 5 && mouseX < apps[id].x + 20 && mouseY > apps[id].y + 5 && mouseY < apps[id].y + 20) {
             mouseHand = true;
-            if (mouseIsPressed) {
+            if (mouseIsClicked) {
                 apps[id].followMode = false;
                 apps[id].doOnClose()
-                console.log(apps[id].name + " closed")
+            }
+            if (mouseIsPressed) {
+                apps[id].followMode = false;
             }
         }
         else if (mouseX > apps[id].x + 25 && mouseX < apps[id].x + 40 && mouseY > apps[id].y + 5 && mouseY < apps[id].y + 20) {
             mouseHand = true;
             if (mouseIsClicked && apps[id].fullScreen == false) {
-                console.log(apps[id].name + " fullscreened")
                 apps[id].fullScreen = true;
             }
             else if (mouseIsClicked && apps[id].fullScreen == true) {
                 apps[id].fullScreen = false;
-                console.log(apps[id].name + " not fullscreened")
 
             }
 
@@ -91,7 +87,6 @@ var windows = {
                     apps[id].xPlus = apps[id].x - mouseX;
                     apps[id].yPlus = apps[id].y - mouseY;
                     apps[id].followMode = true;
-                    console.log(apps[id].name +  " moving")
 
                     for (let i = Object.keys(apps).length; i--; i <= 0) {
                         apps[i].focused = false;   
@@ -107,7 +102,6 @@ var windows = {
                 }
                 apps[id].focused = true;
                 apps[id].followMode = true;
-                console.log(apps[id].name +  " moving")
                 selector.selectAble = false;
                  
             }
@@ -130,7 +124,7 @@ var windows = {
             }
             apps[id].focused = true;
         }
-        fill(150,255,10);
+        fill(100,255,0);
         ellipse(30,10,15,15);
         resetMatrix();
         

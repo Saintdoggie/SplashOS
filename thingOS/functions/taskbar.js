@@ -38,7 +38,7 @@ var taskbar = {
     box: function() {
         if (this.barThing == true) {
             if (this.y > height - 300) {
-                this.y-=30;
+                this.y-=30 * (deltaTime / 10);
             }
             if (mouseX > 10 && mouseX < 110 && mouseY > height - 50 && mouseY < height - 10) {
                 this.mouseOverBar = true;
@@ -57,7 +57,7 @@ var taskbar = {
         }
         else {
             if (this.y < height + 100) {
-                this.y+=30;
+                this.y+=30 * (deltaTime / 10);
             }
         }
         fill(200,200,200);

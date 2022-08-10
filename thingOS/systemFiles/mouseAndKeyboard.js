@@ -13,9 +13,14 @@ function mouse() {
         }
         mouseHand = false;
     }
-    ellipse(mouseX,mouseY,20,20);
-    fill(0)
+    rectMode(CENTER)
+    translate (mouseX, mouseY);
+    rotate(5);
+	rect(-10, 10, 20, 20);
+    resetMatrix()
     noStroke()
+    rectMode(CORNER)
+
 }
 
 var keys = [];
