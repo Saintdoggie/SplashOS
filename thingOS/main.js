@@ -4,6 +4,7 @@ function setup()
 {
     const canvas = createCanvas(1000, 1000)
     canvas.elt.addEventListener("contextmenu", (e) => e.preventDefault())
+    p5.disableFriendlyErrors = true;
     noCursor();
     var fps = 60;
     frameRate(500);
@@ -15,11 +16,12 @@ function setup()
 
 function draw() 
 {
+    //settings.accounts.loggedIn = true
     resizeCanvas(windowWidth, windowHeight);
-    switch (loggedIn) {
+    switch (settings.accounts.bootDone) {
         case false:
             background(220)
-            logIn()
+            settings.accounts.boot()
             if (windows.allowOnLogIn == true) {
                 windows.ids()
             }

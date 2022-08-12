@@ -1,34 +1,39 @@
 
 var selector = {
     selectAble: true,
+    selectTime: 0,
+    selectX: 0,
+    selectY: 0,
+    selectWidth: 0,
+    selectHeight: 0,
     selectArea: function() {
         if (mouseIsPressed && mouseButton === LEFT && this.selectAble == true) {
-            selectTime++;
-            if (selectX <= mouseX && selectY <= mouseY) {
-                if (selectTime < 2) {
-                    selectX = mouseX;
-                    selectY = mouseY;
+            this.selectTime++;
+            if (this.selectX <= mouseX && this.selectY <= mouseY) {
+                if (this.selectTime < 2) {
+                    this.selectX = mouseX;
+                    this.selectY = mouseY;
                 }
                 else {
-                    selectWidth = mouseX-selectX;
-                    selectHeight = mouseY-selectY;
+                    this.selectWidth = mouseX-this.selectX;
+                    this.selectHeight = mouseY-this.selectY;
                 }
                     fill(0,0,0, 150);
                 
                 strokeWeight(2);
 
-                rect(selectX, selectY, selectWidth, selectHeight, 2);
+                rect(this.selectX, this.selectY, this.selectWidth, this.selectHeight, 2);
                 noStroke();
             }
             
             
         }
         else {
-            selectX = 0;
-            selectY = 0;
-            selectWidth = 0;
-            selectHeight = 0;
-            selectTime = 0;
+            this.selectX = 0;
+            this.selectY = 0;
+            this.selectWidth = 0;
+            this.selectHeight = 0;
+            this.selectTime = 0;
             this.selectAble = true;
 
         }

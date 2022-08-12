@@ -27,6 +27,7 @@ var windows = {
                 this.backgroundWorkers.push = structuredClone(apps[id].backgroundWorker());
 
             }
+            
             apps[id].init();
             apps[id].initDone = true;
         }
@@ -95,7 +96,7 @@ var windows = {
                 }
                 
             }
-            if (mouseX > apps[id].x && mouseX < apps[id].x + apps[id].width && mouseY > apps[id].y && mouseY < apps[id].y + apps[id].h && mouseIsPressed) {
+            if (mouseX > apps[id].x && mouseX < apps[id].x + apps[id].width && mouseY > apps[id].y && mouseY < apps[id].y + apps[id].h && apps[id].focused && mouseIsPressed) {
                 
                 for (let i = Object.keys(apps).length; i--; i <= 0) {
                     apps[i].focused = false;   
@@ -118,6 +119,36 @@ var windows = {
         if (apps[id].y < 0) {
             apps[id].y = 0;
         }
+        if (apps[id].focused) {
+            if (apps[id].followMode == false && mouseX >= windowWidth - 20 && mouseIsClicked) {
+                apps[id].x = windowWidth / 2;
+                apps[id].y = 0;
+                apps[id].width = windowWidth / 2;
+                apps[id].height = windowHeight - 60;
+                
+            }
+            if (apps[id].followMode == false && mouseX <= 20 && mouseIsClicked) {
+                apps[id].x = 0;
+                apps[id].y = 0;
+                apps[id].width = windowWidth / 2;
+                apps[id].height = windowHeight - 60;
+                
+            }
+            if (apps[id].followMode == false && mouseY <= 20) {
+                if (apps[id.x != 0]) {
+                    resetMatrix()
+                    fill(255, 255, 255,100);
+                    rect(0,0,windowWidth, windowHeight);
+                    translate(apps[id].x,apps[id].y);
+                }
+                if (mouseIsClicked) {
+                    apps[id].x = 0;
+                    apps[id].y = 0;
+                    apps[id].width = windowWidth ;
+                    apps[id].height = windowHeight - 60;
+                }
+            }
+        }
         if (mouseX > apps[id].x && mouseX < apps[id].x + apps[id].width && mouseY > apps[id].y && mouseY < apps[id].y + apps[id].width && mouseIsClicked) {
             for (let i = Object.keys(apps).length; i--; i <= 0) {
                 apps[i].focused = false;   
@@ -136,10 +167,10 @@ var windows = {
                 if (apps[id].open == true && apps[id].focused == false) {
                         windows.run(id);       
                 }
-                if (apps[id].hasOwnProperty("backgroundWorker") == true) {
-                    apps[id].backgroundWorker()
-                }
             
+            }
+            if (apps[id].hasOwnProperty("backgroundWorker") == true) {
+                apps[id].backgroundWorker()
             }
         }
         

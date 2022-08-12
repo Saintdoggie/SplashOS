@@ -520,18 +520,6 @@ var apps = {
             rect(0,0,this.width,this.height)
             fill(opposingColor)
             textSize(25)
-            for (let i = this.openApplications.length; i--; i <= 0) {
-                text(i + 1 + " " + this.openApplications[i],10,(50 * i) + 100);
-            }
-            text(0 + " System", 10,50)
-            rightClickMain.addRightClick(10 + this.x,50 + this.y,50,25,"kill", function() {})
-            this.openApplications = [];
-
-        },
-        doOnClose: function() {
-            this.open = false;
-        },
-        backgroundWorker: function() {
             for (let id = windows.id.length; id--; id === 0) {
                 if (apps[id].open == true) {
                     if (apps[id].taskName == undefined) {
@@ -543,6 +531,18 @@ var apps = {
                     }                 
                 }
             }
+            for (let i = this.openApplications.length; i--; i <= 0) {
+                text(i + 1 + " " + this.openApplications[i],10,(50 * i) + 100);
+            }
+            text(0 + " System", 10,50)
+            rightClickMain.addRightClick(10 + this.x,50 + this.y,50,25,"kill", function() {})//I know this doesn't work, it will when I decide to fix it...
+            this.openApplications = [];
+
+        },
+        doOnClose: function() {
+            this.open = false;
+        },
+        backgroundWorker: function() {
 
         },
 
@@ -575,18 +575,19 @@ var apps = {
                 this.followMode = false;
             }
             noStroke()
-            fill(0)
+            fill(opposingColor)
             textSize(15)
             text("framerate: " + floor(frameRate()), 50, 50)
             text("deltaTime " + deltaTime,170,50)
-            text("windows open: " + apps[4].openApplications, 50 ,70)
-            apps[4].openApplications = [];
+            text("current open User " + settings.accounts.currentUser, 50, 100)
         },
         doOnClose: function() {
             this.open = false;
         },
         backgroundWorker: function() {
-            
+            if (settings.accounts.currentUser == 0 || settings.accounts.currentUser == 1) {
+                apps[5].open = false;
+            }
         },
     },
     

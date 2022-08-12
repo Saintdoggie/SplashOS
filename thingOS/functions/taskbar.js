@@ -1,7 +1,7 @@
 var taskbar = {
     init: function() {
         this.x = 10;
-        this.y = 1100;
+        this.y = height + 300;
         this.barThing = false;
         this.barTime = 10;
         this.boxTyped = "";
@@ -13,7 +13,7 @@ var taskbar = {
         if (this.barTime < 12) {
             this.barTime++;
         }
-        if (mouseX > 10 && mouseX < 110 && mouseY > height - 50 && mouseY < height - 10) {
+        if (mouseX > 0 && mouseX < 110 && mouseY > height - 50 && mouseY < height - 10) {
             fill(150)
             if (mouseIsClicked) {
                 if (this.barTime > 10 && this.barThing == false && mouseButton == LEFT) {
@@ -75,8 +75,15 @@ var taskbar = {
         if (keyCode === ENTER && keys) {
             for (let id = windows.id.length; id--; id === 0) {
                 if (this.boxTyped == apps[id].name) {
+                    apps[id].focused = true;
                     apps[id].open = true;
                 }
+            }
+            if (this.boxTyped == "log out") {
+                this.boxTyped = "";
+                this.barThing = false;
+                this.y = height + 300;
+                settings.accounts.bootDone = false;
             }
         
         }

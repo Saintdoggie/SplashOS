@@ -1,5 +1,5 @@
 Desktop =  {
-    icons: function() {
+    icon: function() {
         
     },
 }
