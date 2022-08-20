@@ -7,17 +7,17 @@ var colorTheme = [0,0,255]
 var themes = {
     set: function(color) {
         if (color == "red") {
-            backgroundColor = [255,0,0]
+            settings.themes.background.color = [255,0,0]
             colorTheme = [255,0,0]
 
         }
         if (color == "blue") {
-            backgroundColor = [0,0,255]
+            settings.themes.background.color = [0,0,255]
             colorTheme = [0,0,255]
         }
         
         if (color == "green") {
-            backgroundColor = [100, 255, 100]
+            settings.themes.background.color = [100, 255, 100]
             colorTheme = [100, 255, 100]
         }
     },

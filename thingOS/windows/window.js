@@ -17,6 +17,11 @@ var windows = {
             this.id.push(apps[i])
             
         }
+        for (let i = Object.keys(apps).length; i--; i <= 0) {
+            apps[i].constWidth = apps[i].width;
+            apps[i].constHeight = apps[i].height;
+            
+        }
 
     },
     run: function(id) {
@@ -73,14 +78,13 @@ var windows = {
 
             }
 
-        }
-        
-        else {}
+            }
             if (mouseX > apps[id].x && mouseX < apps[id].x + apps[id].width && mouseY > apps[id].y && mouseY < apps[id].y + 20 && mouseIsPressed) {
                 for (let i = Object.keys(apps).length; i--; i <= 0) {
                     if (apps[i].followMode == true) {
-                        this.followBlock = true;
-                        
+                        this.followBlock = true; 
+                        apps[id].width = apps[id].constWidth;
+                        apps[id].height = apps[id].constHeight;
                     }
                     
                 }
@@ -96,7 +100,8 @@ var windows = {
                 }
                 
             }
-            if (mouseX > apps[id].x && mouseX < apps[id].x + apps[id].width && mouseY > apps[id].y && mouseY < apps[id].y + apps[id].h && apps[id].focused && mouseIsPressed) {
+
+            if (mouseX > apps[id].x && mouseX < apps[id].x + apps[id].width && mouseY > apps[id].y && mouseY < apps[id].y + apps[id].h && mouseIsPressed) {
                 
                 for (let i = Object.keys(apps).length; i--; i <= 0) {
                     apps[i].focused = false;   

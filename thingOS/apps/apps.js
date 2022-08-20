@@ -231,8 +231,9 @@ var apps = {
     },
     1: {
         name: "apps",
-        width: 200,
-        height: 200,
+        taskName: "apps",
+        width: 600,
+        height: 600,
         x: 200,
         y: 200,
         followMode: false,
@@ -382,8 +383,8 @@ var apps = {
     3: {
         name: "calculator",
         taskName: "Calculator",
-        width: 300,
-        height: 300,
+        width: 600,
+        height: 600,
         x: 200,
         y: 200,
         followMode: false,
@@ -552,8 +553,8 @@ var apps = {
         taskName: "Debug", 
         width: 600,
         height: 600,
-        x: 200,
-        y: 200,
+        x: 400,
+        y: 400,
         followMode: false,
         open: false,
         fullScreen: false,
@@ -590,5 +591,149 @@ var apps = {
             }
         },
     },
+    6: {
+        name: "Terminal",
+        taskname: "Splash",
+        width: 600,
+        height: 600,
+        x: 200,
+        y: 200,
+        followMode: false,
+        open: false,
+        fullScreen: false,
+        initDone: false,
+        main: false,
+        location: "/",
+        lines: [],
+        code: "",
+        keyHeld: false,
+        init: function() {
+
+        },
+        innerContent: function() {
+            fill(0,0,0,200)
+            rect(0,0,this.width,this.height,5)
+            textSize(25)
+            fill(255);
+            if (40 + this.lines.length * 30 > this.height) {
+                this.lines = []
+            }
+            for (let i = this.lines.length; i--; i <= 0) {
+                text(this.lines[i],20,40 + i * 30, this.width, this.height);
+            }
+            text("[" + settings.accounts.currentUser_string  + "@thingOS " + this.location + "] $ " + this.code + "_",20, 40 + this.lines.length * 30, this.width, this.height)
+            if (40 + this.lines.length * 30 > this.height) {
+                this.lines = []
+            }
+            if (this.focused == true) {
+                if (keyCode === 8 && keyIsPressed) {
+                    this.code = this.code.slice(0,this.code.length-1);
+                    keyIsPressed = false;
+                }
+                if (keyCode !== 8 && keyCode !== ENTER && keyIsPressed && blockedChars() == false) {
+                    this.code+=key.toString();
+                    keyIsPressed = false;
+                }
+                if (keys[ENTER] && this.keyHeld == false) {
+                    this.lines.push("[" + settings.accounts.currentUser_string  + "@thingOS " + this.location + "] $ " + this.code);
+                    if (this.code == "log out") {
+                        settings.accounts.logOut()
+                    }
+                    else if (this.code == "clear") {
+                        terminal.clear();
+                    }
+                    else if (this.code == "cool thing") {
+                        terminal.clear();
+                        this.lines.push(round(random(0, 1)))
+                    }
+                    else if (this.code == "neofetch") {
+                        terminal.log("<    ?    >:      name: " + settings.accounts.currentUser_string  + "@thingOS ");
+                        terminal.log("<    ?    >:      shell: Splash( version 0.1 )")
+                        terminal.log("<    ?    >:      OS: thingOS ( version 0.1 )")
+                        terminal.log("<    ?    >:      Resolution: " + width + "x" + height)
+
+                    }
+                    else if (this.code.startsWith("echo")) {
+                        if (this.code.slice(5) != "") {
+                            terminal.log(this.code.slice(5))
+                        }
+                        else {
+                            terminal.log("Nothing to Echo")
+                        }
+                    }
+                    else if (this.code.startsWith("open")) {
+                        if (this.code.slice(5) != "") {
+                            for (let id = windows.id.length; id--; id === 0) {
+                                if (this.code.slice(5) == apps[id].name) {
+                                    apps[id].focused = true;
+                                    apps[id].open = true;
+                                }
+                            }
+                        }
+                        else {
+                            terminal.log("Nothing to Echo")
+                        }
+                    }
+                    else if (this.code.startsWith("do")) {
+                        if (this.code.slice(3) != "") {
+                            try {
+                                eval(this.code.slice(3))
+                            }
+                            catch {
+                                terminal.log("This string contains errors, Please try again")
+                            }
+                        }
+                        else {
+                            terminal.log("Nothing to Eval")
+                        }
+                    }
+                    // else if (this.code.startsWith("cd")) {
+                    //     if (this.code.slice(3) != "") {
+                    //         if (this.code.slice(3) == "settings") {
+                    //             this.location = "settings";
+                    //         }
+                    //         else {
+                    //             terminal.log("No such directory")
+                    //         }
+                        
+                    //     }
+                    //     else {
+                    //         terminal.log("No such directory")
+                    //     }
+                        
+                    // }
+                    else if (this.code.startsWith("ls")) {
+                        terminal.log("settings  apps")
+                    }
+                    else if (this.code != ""){
+                    
+                        try {
+                            eval(this.code)
+                        }
+                        catch {
+                            terminal.log("splash: " + this.code + ": command not found")
+                            }
+                        
+                    
+                    }
+                    this.code = ""
+                    this.keyHeld = true;
+                
+                }
+                if (!keys[ENTER]) {
+                    this.keyHeld = false;
+                }
+
+            }
+        },
+        doOnClose: function() {
+            this.open = false;
+        },
+        backgroundWorker: function() {
+            if (settings.accounts.currentUser == 0) {
+                apps[5].open = false;
+            }
+        },
+    }
     
 }

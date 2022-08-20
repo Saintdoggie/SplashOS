@@ -43,7 +43,7 @@ rightClickMain = {
         }
     },
     addRightClick: function(x,y,w,h,name,doesSomething) {
-        return;
+        
         //not done, also it kinda sucks
         let init = function() {
             var done = false;

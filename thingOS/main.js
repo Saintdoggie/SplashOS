@@ -6,7 +6,6 @@ function setup()
     canvas.elt.addEventListener("contextmenu", (e) => e.preventDefault())
     p5.disableFriendlyErrors = true;
     noCursor();
-    var fps = 60;
     frameRate(500);
     taskbar.init()
     windows.init()
@@ -16,7 +15,6 @@ function setup()
 
 function draw() 
 {
-    //settings.accounts.loggedIn = true
     resizeCanvas(windowWidth, windowHeight);
     switch (settings.accounts.bootDone) {
         case false:
@@ -30,11 +28,10 @@ function draw()
         break;
         case true:
             
-            background(backgroundColor[0], backgroundColor[1], backgroundColor[2]);
+            background(settings.themes.background.color[0], settings.themes.background.color[1], settings.themes.background.color[2]);
             selector.selectArea();
             windows.ids()
 
-            taskbar.box();
             taskbar.bar();
             TimeDisplay();
             rightClickMain.rightClick()

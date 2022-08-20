@@ -34,6 +34,7 @@ function keyReleased() {
 var mouseIsClicked = false;
 
 function mouseClicked() {
+    fullscreen(true)
     mouseIsClicked = true;
 }
 

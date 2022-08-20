@@ -6,7 +6,9 @@ function TimeDisplay() {
         isAM = false;
         h-=12;
     }
-    else isAm = true;
+    else {
+        isAM = true;
+    }
     var m;
     m = minute();
 
@@ -25,7 +27,7 @@ function TimeDisplay() {
             text(h + ":0" + m + " PM", width - 135,height - 22);
         }
     }
-    else {
+    else if (m > 10) {
         if (isAM == true) {
             text(h + ":" + m + " AM", width - 135,height - 22);
         }
