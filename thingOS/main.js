@@ -7,7 +7,7 @@ function setup()
     p5.disableFriendlyErrors = true;
     noCursor();
     frameRate(500);
-    taskbar.init()
+    settings.taskbar.init()
     windows.init()
 
 }
@@ -32,8 +32,7 @@ function draw()
             selector.selectArea();
             windows.ids()
 
-            taskbar.bar();
-            TimeDisplay();
+            settings.displayGUI()
             rightClickMain.rightClick()
             mouse()
 

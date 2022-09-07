@@ -1,10 +1,123 @@
 var settings = {
+    displayGUI: function() {
+        if (this.taskbar.isDock == false) {
+            this.taskbar.panel()
+        }
+        else if (this.taskbar.isDock == true) {
+            this.taskbar.dock()
+        }
+        this.taskbar.displayTime()
+    },
     themes: {
         background: {
             isPicture: false,
             color: [0,0,255],
             picturePath: "",
         },
+    },
+    taskbar: {
+        isDock: false,
+        init: function() {
+            this.x = 10;
+            this.y = height + 300;
+            this.barThing = false;
+            this.barTime = 10;
+            this.boxTyped = "";
+        },
+        panel: function() {
+            fill(0,0,0,200);
+            rect(0,height - 60,width,60); 
+            fill(200);
+            if (mouseX > 0 && mouseX < 205 && mouseY > height - 50 && mouseY < height - 10) {
+                fill(150);
+            }
+            rect(5, height - 55,200,50,2);
+            if (keyCode === 8 && keyIsPressed) {
+                this.boxTyped = this.boxTyped.slice(0,this.boxTyped.length-1);
+                keyIsPressed = false;
+            }
+            if (keyCode !== 8 && this.boxTyped.length < 15 && keyCode !== ENTER && keyIsPressed && blockedChars() == false) {
+                this.boxTyped+=key.toString();
+                keyIsPressed = false;
+            }
+            if (keyCode === ENTER && keys) {
+                for (let id = windows.id.length; id--; id === 0) {
+                    if (this.boxTyped.toLowerCase() == apps[id].name.toLowerCase()) {
+                        apps[id].focused = true;
+                        apps[id].open = true;
+                    }
+                }
+                if (this.boxTyped == "log out") {
+                    this.barThing = false;
+                    this.y = height + 300;
+                    settings.accounts.bootDone = false;
+                }
+                this.boxTyped = "";
+            }
+            fill(0);
+            textSize(25);
+            if (this.boxTyped != "") {
+                text(this.boxTyped.toLowerCase() + "|", 10, height - 25);
+            }
+        },
+        dock: function() {
+            fill(0,0,0,200);
+            rect(width - 150, height - 60, 150, 60, 5);
+
+            rect(0, height - 60, width / 4, 60, 5);
+        },
+        displayTime: function() {
+            var isAM;
+            var h;
+            h = hour();
+            if (h > 12) {
+                isAM = false;
+                h-=12;
+            }
+            else {
+                isAM = true;
+            }
+            var m;
+            m = minute();
+
+            fill(0,0,0,0);
+            if (mouseX > width - 130 && mouseX < width - 10 && mouseY > height - 50 && mouseY < height - 10) {
+                fill(0,0,0,100);
+            }
+            rect(width - 130 ,height - 50,130,45,3);
+            fill(255);
+            textSize(25);
+            strokeWeight(1)
+            if (m < 10) {
+                if (isAM == true) {
+                    text(h + ":0" + m + " AM", width - 110,height - 20);
+                }
+                if (isAM == false) {
+                    text(h + ":0" + m + " PM", width - 110,height - 20);
+                }
+            }
+            else if (m > 10) {
+                if (isAM == true) {
+                    text(h + ":" + m + " AM", width - 110,height - 20);
+                }
+                if (isAM == false) {
+                    text(h + ":" + m + " PM", width - 110,height - 20);
+                }
+            }
+        },
+    },
+    keyBinds: {
+        keyBindsDetect: function() {
+            if (keys[17] && keys[37]) {
+                for (let id = windows.id.length; id--; id === 0) {
+                    if (apps[id].focused == true) {
+                        apps[id].x = 0;
+                        apps[id].width = width / 2;
+                        apps[id].height = height;
+                    }
+                }
+            }
+        }
     },
     accounts: {
         currentUser: 0,

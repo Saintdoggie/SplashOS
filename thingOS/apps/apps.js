@@ -135,7 +135,7 @@ var apps = {
                 noStroke()
 
                 fill(opposingColor);
-                text("Set Color Theme",this.width / 2 - 50, 220);
+                text("Set Background color",this.width / 2 - 50, 220);
 
                 fill(255,0,0);
                 if (mouseX > (this.width / 3) + this.x && mouseX < (this.width / 3) + 60 + this.x && mouseY > 240 + this.y && mouseY < 310 + this.y) {

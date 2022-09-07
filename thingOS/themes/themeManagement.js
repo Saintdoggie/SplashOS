@@ -1,7 +1,7 @@
-var theme = [255,255,255]
+var theme = [0,0,0]
 var backgroundColor = [0,0,255]
-var opposingColor = [0,0,0]
-var acTheme = "white"
+var opposingColor = [255,255,255]
+var acTheme = "black"
 var colorTheme = [0,0,255]
 
 var themes = {

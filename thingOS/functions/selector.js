@@ -18,11 +18,11 @@ var selector = {
                     this.selectWidth = mouseX-this.selectX;
                     this.selectHeight = mouseY-this.selectY;
                 }
-                    fill(0,0,0, 150);
-                
-                strokeWeight(2);
+                    fill(colorTheme[0], colorTheme[1], colorTheme[2], 150);
+                stroke(0,0,0)
+                strokeWeight(5);
 
-                rect(this.selectX, this.selectY, this.selectWidth, this.selectHeight, 2);
+                rect(this.selectX, this.selectY, this.selectWidth, this.selectHeight, 5);
                 noStroke();
             }
             
