@@ -7,9 +7,9 @@ var settings = {
         },
     },
     accounts: {
-        currentUser: 2,
-        currentUser_string: "Dev",
-        bootDone: true,
+        currentUser: 0,
+        currentUser_string: "User",
+        bootDone: false,
         logOut: function() {
             this.code = "";
             apps[6].lines = []

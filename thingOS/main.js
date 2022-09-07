@@ -3,7 +3,7 @@
 function setup() 
 {
     const canvas = createCanvas(1000, 1000)
-    canvas.elt.addEventListener("contextmenu", (e) => e.preventDefault())
+    //canvas.elt.addEventListener("contextmenu", (e) => e.preventDefault())
     p5.disableFriendlyErrors = true;
     noCursor();
     frameRate(500);

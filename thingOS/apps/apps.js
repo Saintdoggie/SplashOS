@@ -17,31 +17,31 @@ var apps = {
             
         },
         innerContent: function() {
-            fill(theme[0] - 20)
-            rect(0,0,this.width,this.height);
+            fill(theme[0] - 20, theme[1] - 20, theme[2] - 20,200)
+            rect(0,0,this.width,this.height, 5);
             noStroke();
 
 
 
             //start innercontent
             if (acTheme == "black") {
-                fill(theme[1] + 20);
-                stroke(theme[1] + 20);
+                fill(theme[0] + 20, theme[1] + 20, theme[2] + 20, 200);
+                stroke(theme[0] + 40, theme[1] + 40, theme[2] + 40, 200);
 
             }
             if (acTheme == "white") {
-                fill(theme[1] - 20);
-                stroke(theme[1] - 40);
+                fill(theme[0] - 20, theme[1] - 20, theme[2] - 20, 200);
+                stroke(theme[0] - 40, theme[1] - 40, theme[2] - 40, 200);
             }
 
             line(150,10,150, this.height);
             noStroke();
             if (mouseX > 3 + this.x && mouseX < 143 + this.x && mouseY > 30 + this.y && mouseY < 60 + this.y) {
                 if (acTheme == "black") {
-                    fill(theme[1] + 30);
+                    fill(theme[0] + 30, theme[1] + 30, theme[2] + 30, 200);
                 }
                 if (acTheme == "white") {
-                    fill(theme[1] - 30);
+                    fill(theme[0] - 30, theme[1] - 30, theme[2] - 30, 200);
                 }
 
                 if (mouseIsClicked) {
@@ -50,10 +50,10 @@ var apps = {
             }
             if (this.page == "personalization") {
                 if (acTheme == "black") {
-                    fill(theme[1] + 50);
+                    fill(theme[0] + 30, theme[1] + 30, theme[2] + 30, 200);
                 }
                 if (acTheme == "white") {
-                    fill(theme[1] - 50);
+                    fill(theme[0] - 30, theme[1] - 30, theme[2] - 30, 200);
                 }
             }
             rect(3,30,140,30,5);
@@ -62,30 +62,29 @@ var apps = {
             text("Personalization",20,50)
 
             if (acTheme == "black") {
-                fill(theme[1] + 20);
+                fill(theme[0] + 20, theme[1] + 20, theme[2] + 20, 200);
 
             }
             if (acTheme == "white") {
-                fill(theme[1] - 20);
+                fill(theme[0] - 20, theme[1] - 20, theme[2] - 20, 200);
             }
             if (mouseX > 3 + this.x && mouseX < 143 + this.x && mouseY > 70 + this.y && mouseY < 100 + this.y) {
                 if (acTheme == "black") {
-                    fill(theme[1] + 30);
+                    fill(theme[0] + 30, theme[1] + 30, theme[2] + 30, 200);
                 }
                 if (acTheme == "white") {
-                    fill(theme[1] - 30);
+                    fill(theme[0] - 30, theme[1] - 30, theme[2] - 30, 200);
                 }
-
                 if (mouseIsClicked) {
                     this.page = "apps";
                 }
             }
             if (this.page == "apps") {
                 if (acTheme == "black") {
-                    fill(theme[1] + 50);
+                    fill(theme[0] + 50, theme[1] + 50, theme[2] + 50, 200);
                 }
                 if (acTheme == "white") {
-                    fill(theme[1] - 50);
+                    fill(theme[0] - 50, theme[1] - 50, theme[2] - 50, 200);
                 }
             }
             rect(3,70,140,30,5);
@@ -599,7 +598,7 @@ var apps = {
         x: 200,
         y: 200,
         followMode: false,
-        open: false,
+        open: true,
         fullScreen: false,
         initDone: false,
         main: false,
@@ -611,10 +610,10 @@ var apps = {
 
         },
         innerContent: function() {
-            fill(0,0,0,200)
+            fill(theme[0], theme[1], theme[2], 200)
             rect(0,0,this.width,this.height,5)
             textSize(25)
-            fill(255);
+            fill(opposingColor[0], opposingColor[1], opposingColor[2]);
             if (40 + this.lines.length * 30 > this.height) {
                 this.lines = []
             }
@@ -648,8 +647,8 @@ var apps = {
                     }
                     else if (this.code == "neofetch") {
                         terminal.log("<    ?    >:      name: " + settings.accounts.currentUser_string  + "@thingOS ");
-                        terminal.log("<    ?    >:      shell: Splash( version 0.1 )")
-                        terminal.log("<    ?    >:      OS: thingOS ( version 0.1 )")
+                        terminal.log("<    ?    >:      shell: Splash( version 0.1.2 )")
+                        terminal.log("<    ?    >:      OS: thingOS ( version 0.1.2 )")
                         terminal.log("<    ?    >:      Resolution: " + width + "x" + height)
 
                     }
@@ -663,15 +662,19 @@ var apps = {
                     }
                     else if (this.code.startsWith("open")) {
                         if (this.code.slice(5) != "") {
+                            this.doOpenError = false;
+
                             for (let id = windows.id.length; id--; id === 0) {
                                 if (this.code.slice(5) == apps[id].name) {
                                     apps[id].focused = true;
                                     apps[id].open = true;
+                                    this.doOpenError = true;
                                 }
+
                             }
                         }
-                        else {
-                            terminal.log("Nothing to Echo")
+                        if (this.doOpenError == false) {
+                            terminal.log("Nothing to open")
                         }
                     }
                     else if (this.code.startsWith("do")) {
@@ -702,6 +705,9 @@ var apps = {
                     //     }
                         
                     // }
+                    else if (this.code == "exit") {
+                        this.doOnClose()                        
+                    }
                     else if (this.code.startsWith("ls")) {
                         terminal.log("settings  apps")
                     }
@@ -727,12 +733,40 @@ var apps = {
             }
         },
         doOnClose: function() {
+            this.lines = [];
             this.open = false;
         },
         backgroundWorker: function() {
             if (settings.accounts.currentUser == 0) {
                 apps[5].open = false;
             }
+        },
+    },
+    7: {
+        name: "browser",
+        taskname: "browser",
+        width: 600,
+        height: 600,
+        x: 200,
+        y: 200,
+        followMode: false,
+        open: false,
+        fullScreen: false,
+        initDone: false,
+        main: false,
+        init: function() {
+
+        },
+        innerContent: function() {
+            fill(theme[0], theme[1], theme[2], 200)
+            rect(0,0,this.width,this.height,5)
+            
+        },
+        doOnClose: function() {
+            this.open = false;
+        },
+        backgroundWorker: function() {
+            
         },
     }
     
