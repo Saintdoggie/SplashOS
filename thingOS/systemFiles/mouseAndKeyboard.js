@@ -35,7 +35,7 @@ var mouseIsClicked = false;
 
 function mouseClicked() {
     if (document.fullscreenEnabled) {
-        //fullscreen(true)
+        fullscreen(true)
     }
     mouseIsClicked = true;
 }
