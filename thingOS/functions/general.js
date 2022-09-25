@@ -7,3 +7,11 @@ var blockedChars = function() {
         
     }
 }
+function errorMessage() {
+    console.log("if your seeing errors... why are you on firefox");
+}
+function checkSize() {
+    let box = document.getElementById('body');
+    var width = box.offsetWidth;
+    var height = box.offsetHeight;
+}

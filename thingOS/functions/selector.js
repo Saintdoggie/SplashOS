@@ -18,9 +18,8 @@ var selector = {
                     this.selectWidth = mouseX-this.selectX;
                     this.selectHeight = mouseY-this.selectY;
                 }
-                    fill(colorTheme[0], colorTheme[1], colorTheme[2], 150);
-                stroke(0,0,0)
-                strokeWeight(5);
+                fill(theme[0],theme[1],theme[2], 150);
+                noStroke();
 
                 rect(this.selectX, this.selectY, this.selectWidth, this.selectHeight, 5);
                 noStroke();

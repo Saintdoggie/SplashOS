@@ -36,12 +36,7 @@ var windows = {
             apps[id].init();
             apps[id].initDone = true;
         }
-        if (apps[id].fullScreen == true) {
-                apps[id].x = 0;
-                apps[id].y = 0;
-                apps[id].width = width;
-                apps[id].height = height - 60;
-        }
+        
         translate(apps[id].x,apps[id].y);
         if (apps[id].followMode == true) {
             apps[id].x = mouseX + apps[id].xPlus;
@@ -55,11 +50,9 @@ var windows = {
         
         apps[id].innerContent();
         fill(255, 0, 0);
-        ellipse(10,10,15,15);
-        
-        
         if (mouseX > apps[id].x + 5 && mouseX < apps[id].x + 20 && mouseY > apps[id].y + 5 && mouseY < apps[id].y + 20) {
             mouseHand = true;
+            fill(255,0,0,200)
             if (mouseIsClicked) {
                 apps[id].followMode = false;
                 apps[id].doOnClose()
@@ -68,37 +61,29 @@ var windows = {
                 apps[id].followMode = false;
             }
         }
-        else if (mouseX > apps[id].x + 25 && mouseX < apps[id].x + 40 && mouseY > apps[id].y + 5 && mouseY < apps[id].y + 20) {
-            mouseHand = true;
-            if (mouseIsClicked && apps[id].fullScreen == false) {
-                apps[id].fullScreen = true;
-            }
-            else if (mouseIsClicked && apps[id].fullScreen == true) {
-                apps[id].fullScreen = false;
-
-            }
-
-            }
-            if (mouseX > apps[id].x && mouseX < apps[id].x + apps[id].width && mouseY > apps[id].y && mouseY < apps[id].y + 20 && mouseIsPressed) {
-                for (let i = Object.keys(apps).length; i--; i <= 0) {
-                    if (apps[i].followMode == true) {
-                        this.followBlock = true; 
-                        apps[id].width = apps[id].constWidth;
-                        apps[id].height = apps[id].constHeight;
-                    }
-                    
-                }
-                if (this.followBlock == false) {
-                    apps[id].xPlus = apps[id].x - mouseX;
-                    apps[id].yPlus = apps[id].y - mouseY;
-                    apps[id].followMode = true;
-
-                    for (let i = Object.keys(apps).length; i--; i <= 0) {
-                        apps[i].focused = false;   
-                    }
-                    apps[id].focused = true;
+        ellipse(10,10,15,15);
+        
+        
+        if (mouseX > apps[id].x && mouseX < apps[id].x + apps[id].width && mouseY > apps[id].y && mouseY < apps[id].y + 20 && mouseIsPressed) {
+            for (let i = Object.keys(apps).length; i--; i <= 0) {
+                if (apps[i].followMode == true) {
+                    this.followBlock = true; 
+                    apps[id].width = apps[id].constWidth;
+                    apps[id].height = apps[id].constHeight;
                 }
                 
+            }
+            if (this.followBlock == false) {
+                apps[id].xPlus = apps[id].x - mouseX;
+                apps[id].yPlus = apps[id].y - mouseY;
+                apps[id].followMode = true;
+
+                for (let i = Object.keys(apps).length; i--; i <= 0) {
+                    apps[i].focused = false;   
+                }
+                apps[id].focused = true;
+            }
+            
             }
 
             if (mouseX > apps[id].x && mouseX < apps[id].x + apps[id].width && mouseY > apps[id].y && mouseY < apps[id].y + apps[id].h && mouseIsPressed) {
@@ -160,8 +145,6 @@ var windows = {
             }
             apps[id].focused = true;
         }
-        fill(100,255,0);
-        ellipse(30,10,15,15);
         resetMatrix();
         
 },

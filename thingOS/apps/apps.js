@@ -76,21 +76,13 @@ var apps = {
                     fill(theme[0] - 30, theme[1] - 30, theme[2] - 30, 200);
                 }
                 if (mouseIsClicked) {
-                    this.page = "apps";
-                }
-            }
-            if (this.page == "apps") {
-                if (acTheme == "black") {
-                    fill(theme[0] + 50, theme[1] + 50, theme[2] + 50, 200);
-                }
-                if (acTheme == "white") {
-                    fill(theme[0] - 50, theme[1] - 50, theme[2] - 50, 200);
+                    this.page = "Display";
                 }
             }
             rect(3,70,140,30,5);
             fill(opposingColor)
             textSize(15)
-            text("Apps",20,90)
+            text("Display",20,90)
 
             if (this.page == "personalization") {
                 textSize(25);
@@ -135,7 +127,7 @@ var apps = {
                 noStroke()
 
                 fill(opposingColor);
-                text("Set Background color",this.width / 2 - 50, 220);
+                text("Set Background color",this.width / 2 - 100, 220);
 
                 fill(255,0,0);
                 if (mouseX > (this.width / 3) + this.x && mouseX < (this.width / 3) + 60 + this.x && mouseY > 240 + this.y && mouseY < 310 + this.y) {
@@ -194,24 +186,59 @@ var apps = {
 
             }
             
-            if (this.page == "apps") {
-                fill(opposingColor)
-                text("this will be made later, so go away(until later)", this.width / 2 - 100, 50);
-                //rect(this.width / 2 - 40, 50, 80,80,5);
-
-            }
-            if (this.page == "display") {
+            if (this.page == "Display") {
                 fill(opposingColor);
                 textSize(20);
                 text("Display Settings", this.width / 2 - 30, 50);
-                text("Refresh Rate", this.width / 2 - 90, 120);
-                if (acTheme == "white") {
-                    fill(theme[0] + 20)
+                text("Auto resize", this.width / 2 - 90, 120);
+                if (mouseX > this.x + this.width / 2 - 100 && mouseX < this.x + this.width / 2 + 20 && mouseY > this.y + 150 && mouseY < this.y + 230) {
+                    if (acTheme == "white") {
+                        fill(theme[0] - 20, theme[1] - 20, theme[2] - 20, 200);
+                    }
+                    if (acTheme == "black") {
+                        fill(theme[0] + 20, theme[1] + 20, theme[2] + 20, 200);
+                    }
+                    if (mouseIsClicked) {
+                        resizeCanvas(windowWidth, windowHeight);
+                    }
                 }
-                if (acTheme == "black") {
-                    fill(theme[0] - 20)
+                else {
+                    if (acTheme == "white") {
+                        fill(theme[0] + 20, theme[1] + 20, theme[2] + 20, 200);
+                    }
+                    if (acTheme == "black") {
+                        fill(theme[0] - 20, theme[1] - 20, theme[2] - 20, 200);
+                    }
                 }
                 rect(this.width / 2 - 100, 150, 120,80,5);
+
+                fill(opposingColor);
+                textSize(20);
+                text("Fullscreen", this.width / 1.3 - 90, 120);
+                if (mouseX > this.x + this.width / 1.3 - 100 && mouseX < this.x + this.width / 1.3 + 20 && mouseY > this.y + 150 && mouseY < this.y + 230) {
+                    if (acTheme == "white") {
+                        fill(theme[0] - 20, theme[1] - 20, theme[2] - 20, 200);
+                    }
+                    if (acTheme == "black") {
+                        fill(theme[0] + 20, theme[1] + 20, theme[2] + 20, 200);
+                    }
+                    if (mouseIsClicked) {
+                        let fullscreenState = fullscreen();
+                        if (document.fullscreenEnabled) {                            
+                            fullscreen(!fullscreenState);
+                        }
+                        console.log({fullscreen})
+                    }
+                }
+                else {
+                    if (acTheme == "white") {
+                        fill(theme[0] + 20, theme[1] + 20, theme[2] + 20, 200);
+                    }
+                    if (acTheme == "black") {
+                        fill(theme[0] - 20, theme[1] - 20, theme[2] - 20, 200);
+                    }
+                }
+                rect(this.width / 1.3 - 100, 150, 120,80,5);
 
             }
 
@@ -224,7 +251,7 @@ var apps = {
             apps[0].open = false;
             apps[0].fullScreen = false;
         },
-        open: false,
+        open: true,
         fullScreen: false,
 
     },
@@ -237,7 +264,7 @@ var apps = {
         y: 200,
         followMode: false,
         innerContent: function() {
-            fill(255)
+            fill(theme[0], theme[1], theme[2], 200)
             noStroke()
             rect(0,0,this.width,this.height);
             fill(opposingColor)
@@ -516,8 +543,8 @@ var apps = {
             
         },
         innerContent: function() {
-            fill(theme);
-            rect(0,0,this.width,this.height)
+            fill(theme[0], theme[1], theme[2], 200);
+            rect(0,0,this.width,this.height, 5)
             fill(opposingColor)
             textSize(25)
             for (let id = windows.id.length; id--; id === 0) {
@@ -563,9 +590,9 @@ var apps = {
             this.openApplications = [];
         },
         innerContent: function() {
-            fill(theme);
-            stroke(2)
-            rect(0,0,this.width,this.height)
+            fill(theme[0], theme[1], theme[2], 200);
+            noStroke()
+            rect(0,0,this.width,this.height, 5)
             if (mouseIsPressed && mouseX > this.x && mouseX < this.x + this.width && mouseY > this.y && mouseY < this.y + this.height) {
                 this.followMode = true;
                 this.xPlus = this.x - mouseX;
