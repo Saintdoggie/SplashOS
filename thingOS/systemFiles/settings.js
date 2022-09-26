@@ -1,12 +1,24 @@
 var settings = {
     displayGUI: function() {
+        background(settings.themes.background.color[0], settings.themes.background.color[1], settings.themes.background.color[2]);
+
+        selector.selectArea();
+
+        windows.ids();
+
         if (this.taskbar.isDock == false) {
-            this.taskbar.panel()
+            this.taskbar.panel();
         }
         else if (this.taskbar.isDock == true) {
-            this.taskbar.dock()
+            this.taskbar.dock();
         }
-        this.taskbar.displayTime()
+        this.taskbar.displayTime();
+
+        rightClickMain.rightClick();
+
+        mouse();
+
+
     },
     themes: {
         background: {
@@ -151,7 +163,7 @@ var settings = {
             rect(width / 2 - 150, 100, 300, 100, 5)
             fill(255)
             
-            text("User",width / 2,height / 8);
+            text("User",width / 2,125);
             
             fill(30)
             if (mouseX > width / 2 - 150 && mouseX < width / 2 + 160 && mouseY > 220 && mouseY < 320) {

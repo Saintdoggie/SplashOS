@@ -19,8 +19,6 @@ function draw()
 {
     switch (settings.accounts.bootDone) {
         case false:
-            checkSize()
-            resizeCanvas(width, height);
             background(220)
             settings.accounts.boot()
             if (windows.allowOnLogIn == true) {
@@ -35,15 +33,8 @@ function draw()
         break;
         case true:
 
-        
-        background(settings.themes.background.color[0], settings.themes.background.color[1], settings.themes.background.color[2]);
-        selector.selectArea();
-        windows.ids()
-
         settings.displayGUI()
-        rightClickMain.rightClick()
-        mouse()
-
+        
         //not much here...
         break;
     }

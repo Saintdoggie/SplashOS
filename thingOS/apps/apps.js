@@ -716,6 +716,14 @@ var apps = {
                             terminal.log("Nothing to Eval")
                         }
                     }
+                    else if (this.code.startsWith("go")) {
+                        if (this.code.slice(3).startsWith("https://")) {
+                            window.open(this.code.slice(3), "_blank")
+                        }
+                        else {
+                            window.open("https://" + this.code.slice(3), '_blank');
+                        }
+                    }
                     // else if (this.code.startsWith("cd")) {
                     //     if (this.code.slice(3) != "") {
                     //         if (this.code.slice(3) == "settings") {
@@ -776,7 +784,7 @@ var apps = {
         x: 200,
         y: 200,
         followMode: false,
-        open: false,
+        open: true,
         fullScreen: false,
         initDone: false,
         main: false,
@@ -786,6 +794,7 @@ var apps = {
         innerContent: function() {
             fill(theme[0], theme[1], theme[2], 200)
             rect(0,0,this.width,this.height,5)
+            text(keys[38],10,10)
             
         },
         doOnClose: function() {
