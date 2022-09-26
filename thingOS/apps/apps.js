@@ -776,33 +776,6 @@ var apps = {
             }
         },
     },
-    7: {
-        name: "browser",
-        taskname: "browser",
-        width: 600,
-        height: 600,
-        x: 200,
-        y: 200,
-        followMode: false,
-        open: true,
-        fullScreen: false,
-        initDone: false,
-        main: false,
-        init: function() {
-
-        },
-        innerContent: function() {
-            fill(theme[0], theme[1], theme[2], 200)
-            rect(0,0,this.width,this.height,5)
-            text(keys[38],10,10)
-            
-        },
-        doOnClose: function() {
-            this.open = false;
-        },
-        backgroundWorker: function() {
-            
-        },
-    }
+    
     
 }
