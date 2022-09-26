@@ -251,7 +251,7 @@ var apps = {
             apps[0].open = false;
             apps[0].fullScreen = false;
         },
-        open: true,
+        open: false,
         fullScreen: false,
 
     },
@@ -674,9 +674,9 @@ var apps = {
                     }
                     else if (this.code == "neofetch") {
                         terminal.log("<    ?    >:      name: " + settings.accounts.currentUser_string  + "@thingOS ");
-                        terminal.log("<    ?    >:      shell: Splash( version 0.1.2 )")
-                        terminal.log("<    ?    >:      OS: thingOS ( version 0.1.2 )")
-                        terminal.log("<    ?    >:      Resolution: " + width + "x" + height)
+                        terminal.log("<    ?    >:      shell: Splash(version 0.1.2 )");
+                        terminal.log("<    ?    >:      OS: thingOS (version 0.1.3)");
+                        terminal.log("<    ?    >:      Resolution: " + width + "x" + height);
 
                     }
                     else if (this.code.startsWith("echo")) {
