@@ -227,7 +227,6 @@ var apps = {
                         if (document.fullscreenEnabled) {                            
                             fullscreen(!fullscreenState);
                         }
-                        console.log({fullscreen})
                     }
                 }
                 else {

@@ -2,7 +2,10 @@
 
 function setup() 
 {
-    const canvas = createCanvas(1000, 1000)
+    checkSize()
+    const canvas = createCanvas(1000,1000);
+    checkSize()
+    resizeCanvas(width, height);
     canvas.elt.addEventListener("contextmenu", (e) => e.preventDefault())
     p5.disableFriendlyErrors = true;
     noCursor();
@@ -16,6 +19,8 @@ function draw()
 {
     switch (settings.accounts.bootDone) {
         case false:
+            checkSize()
+            resizeCanvas(width, height);
             background(220)
             settings.accounts.boot()
             if (windows.allowOnLogIn == true) {
