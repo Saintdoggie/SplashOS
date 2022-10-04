@@ -169,7 +169,7 @@ var settings = {
     accounts: {
         currentUser: 0,
         currentUser_string: "User",
-        bootDone: true,
+        bootDone: false,
         logOut: function() {
             this.code = "";
             apps[6].lines = []

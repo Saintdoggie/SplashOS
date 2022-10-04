@@ -264,7 +264,7 @@ var apps = {
             apps[0].open = false;
             apps[0].fullScreen = false;
         },
-        open: true,
+        open: false,
         fullScreen: false,
 
     },
