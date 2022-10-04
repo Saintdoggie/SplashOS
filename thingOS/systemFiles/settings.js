@@ -37,23 +37,32 @@ var settings = {
             this.boxTyped = "";
         },
         panel: function() {
-            fill(0,0,0,200);
+            fill(0);
+            drawingContext.filter = 'blur(40px)'
+            
+            rect(-10,height,width + 10,60); 
+            drawingContext.filter = 'blur(0px)'
+
+            fill(0,0,0,127.5)
             rect(0,height - 60,width,60); 
-            fill(200);
-            if (mouseX > 0 && mouseX < 205 && mouseY > height - 50 && mouseY < height - 10) {
-                fill(150);
-            }
-            rect(5, height - 55,200,50,2);
+
+            fill(0,0,0,200);
+
+
+            // if (mouseX > 0 && mouseX < 205 && mouseY > height - 50 && mouseY < height - 10) {
+            //     fill(150);
+            // }
+            // rect(5, height - 55,200,50,2);
             if (keyCode === 8 && keyIsPressed) {
                 this.boxTyped = this.boxTyped.slice(0,this.boxTyped.length-1);
                 keyIsPressed = false;
             }
             if (keyCode !== 8 && this.boxTyped.length < 15 && keyCode !== ENTER && keyIsPressed && blockedChars() == false) {
-                this.boxTyped+=key.toString();
+                this.boxTyped+=key;
                 keyIsPressed = false;
             }
-            if (keyCode === ENTER && keys) {
-                for (let id = windows.id.length; id--; id === 0) {
+            if (keyCode === ENTER && keyIsPressed) {
+                for (let id = Object.keys(apps).length; id--; id === 0) {
                     if (this.boxTyped.toLowerCase() == apps[id].name.toLowerCase()) {
                         apps[id].focused = true;
                         apps[id].open = true;
@@ -64,12 +73,38 @@ var settings = {
                     this.y = height + 300;
                     settings.accounts.bootDone = false;
                 }
+                if (this.boxTyped == "close") {
+                    for (let id = Object.keys(apps).length; id--; id === 0) {
+                        if (apps[id].focused == true) {
+                            apps[id].doOnClose()
+                        }
+                    }
+                }
+                if (this.boxTyped == "kill") {
+                    for (let id = Object.keys(apps).length; id--; id === 0) {
+                        if (apps[id].focused == true) {
+                            apps[id].open = false;
+                        }
+                    }
+                }
                 this.boxTyped = "";
             }
             fill(0);
             textSize(25);
-            if (this.boxTyped != "") {
-                text(this.boxTyped.toLowerCase() + "|", 10, height - 25);
+            if (this.boxTyped != "") {                
+                // drawingContext.filter = 'blur(20px)'
+
+                fill(0,0,0, 50);
+
+                rect(0, height - 50, 400, 40, 5);
+
+                drawingContext.filter = 'blur(0px)'
+
+                fill(255);
+
+
+                text("command: " + this.boxTyped.toLowerCase() + "|", 10, height - 25);
+
             }
         },
         dock: function() {
@@ -134,7 +169,7 @@ var settings = {
     accounts: {
         currentUser: 0,
         currentUser_string: "User",
-        bootDone: false,
+        bootDone: true,
         logOut: function() {
             this.code = "";
             apps[6].lines = []

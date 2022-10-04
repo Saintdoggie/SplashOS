@@ -14,10 +14,6 @@ var windows = {
             
         }
         for (let i = Object.keys(apps).length; i--; i <= 0) {
-            this.id.push(apps[i])
-            
-        }
-        for (let i = Object.keys(apps).length; i--; i <= 0) {
             apps[i].constWidth = apps[i].width;
             apps[i].constHeight = apps[i].height;
             
@@ -62,7 +58,7 @@ var windows = {
             }
         }
         ellipse(10,10,15,15);
-        
+
         
         if (mouseX > apps[id].x && mouseX < apps[id].x + apps[id].width && mouseY > apps[id].y && mouseY < apps[id].y + 20 && mouseIsPressed) {
             for (let i = Object.keys(apps).length; i--; i <= 0) {
@@ -146,11 +142,11 @@ var windows = {
             apps[id].focused = true;
         }
         resetMatrix();
+
         
-},
-    id: [],
+    },
     ids: function() {
-        for (let id = this.id.length; id--; id <= 0) {
+        for (let id = Object.keys(apps).length; id--; id <= 0) {
             if (apps[id].open == true) {
                 if (apps[id].open == true && apps[id].focused == false) {
                         windows.run(id);       
@@ -162,21 +158,21 @@ var windows = {
             }
         }
         
-        for (let i = Object.keys(apps).length; i--; i <= 0) {
-            if (apps[i].open == true && apps[i].focused == true) {
-                windows.run(i);    
+        for (let id = Object.keys(apps).length; id--; id <= 0) {
+            if (apps[id].open == true && apps[id].focused == true) {
+                windows.run(id);    
             }
-            else if (apps[i].open == false) {
-                apps[i].followMode = false;
+            else if (apps[id].open == false) {
+                apps[id].followMode = false;
             }
-            if (apps[i].hasOwnProperty("backgroundWorker") == true) {
-                apps[i].backgroundWorker()
+            if (apps[id].hasOwnProperty("backgroundWorker") == true) {
+                apps[id].backgroundWorker()
             }  
         }
         
     },
     closeApp: function(appName) {
-        for (let id = this.id.length; id--; id === 0) {
+        for (let id = Object.keys(apps).length; id--; id === 0) {
             if (apps[id].name == appName) {
                 apps[id].open = false;
                 return "done!"    
@@ -185,7 +181,7 @@ var windows = {
         }
     },
     openApp: function(appName) {
-        for (let id = this.id.length; id--; id === 0) {
+        for (let id = Object.keys(apps).length; id--; id === 0) {
             if (apps[id].name == appName) {
                 apps[id].open = true;
                 return "done!"    

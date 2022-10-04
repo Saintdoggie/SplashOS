@@ -1,5 +1,7 @@
 // p5.js main file
 
+
+
 function setup() 
 {
     checkSize()
@@ -12,6 +14,8 @@ function setup()
     frameRate(500);
     settings.taskbar.init()
     windows.init()
+    termApps = [];
+
 
 }
 
@@ -33,8 +37,7 @@ function draw()
         break;
         case true:
 
-        settings.displayGUI()
-        
+        settings.displayGUI()        
         //not much here...
         break;
     }

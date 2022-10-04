@@ -18,11 +18,20 @@ var selector = {
                     this.selectWidth = mouseX-this.selectX;
                     this.selectHeight = mouseY-this.selectY;
                 }
-                fill(theme[0],theme[1],theme[2], 100);
-                noStroke();
+
+                noStroke()
+                drawingContext.filter = 'blur(10px)'
+                fill(theme[0],theme[1],theme[2], 50);
 
                 rect(this.selectX, this.selectY, this.selectWidth, this.selectHeight, 5);
-                noStroke();
+
+                drawingContext.filter = 'blur(0px)'
+
+                fill(theme[0],theme[1],theme[2], 20);
+
+                rect(this.selectX, this.selectY, this.selectWidth, this.selectHeight, 5);
+
+
             }
             
             

@@ -13,17 +13,26 @@ var apps = {
         followMode: false,
         main: false,
         init: function() {
-            this.page = "none";
+            this.page = "";
+
             
         },
         innerContent: function() {
-            fill(theme[0] - 20, theme[1] - 20, theme[2] - 20,200)
+            fill(theme[0] - 20, theme[1] - 20, theme[2] - 20,120)
             rect(0,0,this.width,this.height, 5);
+
+            drawingContext.filter = 'blur(20px)'
+
+            stroke(theme[0], theme[1], theme[2], 200)
+
+            rect(10, 10, this.width, this.height, 5)
+0
+            drawingContext.filter = 'blur(0px)'
+
             noStroke();
 
 
 
-            //start innercontent
             if (acTheme == "black") {
                 fill(theme[0] + 20, theme[1] + 20, theme[2] + 20, 200);
                 stroke(theme[0] + 40, theme[1] + 40, theme[2] + 40, 200);
@@ -223,7 +232,8 @@ var apps = {
                         fill(theme[0] + 20, theme[1] + 20, theme[2] + 20, 200);
                     }
                     if (mouseIsClicked) {
-                        let fullscreenState = fullscreen();
+                        let fullscreenState = fullscreen()
+
                         if (document.fullscreenEnabled) {                            
                             fullscreen(!fullscreenState);
                         }
@@ -239,9 +249,13 @@ var apps = {
                 }
                 rect(this.width / 1.3 - 100, 150, 120,80,5);
 
+
+                // header2("Test text", this.width / 1.47, 260);
+                // checkBox(this.width / 1.4,270,function () {}, function() {})
+                
+
             }
 
-            //end inner content
 
 
         },
@@ -250,7 +264,7 @@ var apps = {
             apps[0].open = false;
             apps[0].fullScreen = false;
         },
-        open: false,
+        open: true,
         fullScreen: false,
 
     },
@@ -546,7 +560,7 @@ var apps = {
             rect(0,0,this.width,this.height, 5)
             fill(opposingColor)
             textSize(25)
-            for (let id = windows.id.length; id--; id === 0) {
+            for (let id = Object.keys(apps).length; id--; id === 0) {
                 if (apps[id].open == true) {
                     if (apps[id].taskName == undefined) {
                         this.openApplications.push(apps[id].name);
@@ -561,8 +575,7 @@ var apps = {
                 text(i + 1 + " " + this.openApplications[i],10,(50 * i) + 100);
             }
             text(0 + " System", 10,50)
-            rightClickMain.addRightClick(10 + this.x,50 + this.y,50,25,"kill", function() {})//I know this doesn't work, it will when I decide to fix it...
-            this.openApplications = [];
+            rightClickMain.addRightClick(10 + this.x,50 + this.y,50,25,"kill", function() {})//I know this doesn't work, it will when I say it will
 
         },
         doOnClose: function() {
@@ -636,8 +649,19 @@ var apps = {
 
         },
         innerContent: function() {
-            fill(theme[0], theme[1], theme[2], 200)
+            fill(theme[0], theme[1], theme[2], 150)
             rect(0,0,this.width,this.height,5)
+            
+            drawingContext.filter = 'blur(20px)'
+
+            stroke(theme[0], theme[1], theme[2], 150)
+            rect(10, 10, this.width, this.height, 5)
+
+
+
+            drawingContext.filter = 'blur(0px)'
+            
+            noStroke();
             textSize(25)
             fill(opposingColor[0], opposingColor[1], opposingColor[2]);
             if (40 + this.lines.length * 30 > this.height) {
@@ -656,7 +680,7 @@ var apps = {
                     keyIsPressed = false;
                 }
                 if (keyCode !== 8 && keyCode !== ENTER && keyIsPressed && blockedChars() == false) {
-                    this.code+=key.toString();
+                    this.code+=key;``
                     keyIsPressed = false;
                 }
                 if (keys[ENTER] && this.keyHeld == false) {
@@ -671,13 +695,6 @@ var apps = {
                         terminal.clear();
                         this.lines.push(round(random(0, 1)))
                     }
-                    else if (this.code == "neofetch") {
-                        terminal.log("<    ?    >:      name: " + settings.accounts.currentUser_string  + "@thingOS ");
-                        terminal.log("<    ?    >:      shell: Splash(version 0.1.2 )");
-                        terminal.log("<    ?    >:      OS: thingOS (version 0.1.3)");
-                        terminal.log("<    ?    >:      Resolution: " + width + "x" + height);
-
-                    }
                     else if (this.code.startsWith("echo")) {
                         if (this.code.slice(5) != "") {
                             terminal.log(this.code.slice(5))
@@ -690,7 +707,7 @@ var apps = {
                         if (this.code.slice(5) != "") {
                             this.doOpenError = false;
 
-                            for (let id = windows.id.length; id--; id === 0) {
+                            for (let id = Object.keys(apps).length; id--; id == 0) {
                                 if (this.code.slice(5) == apps[id].name) {
                                     apps[id].focused = true;
                                     apps[id].open = true;
@@ -724,6 +741,27 @@ var apps = {
                             window.open("https://" + this.code.slice(3), '_blank');
                         }
                     }
+                    else if (this.code.startsWith("wave")) {
+                        if (this.code.slice(5).startsWith("install")) {
+                            wave.install(this.code.slice(13));
+                        }
+                    }
+                    else if (this.code.startsWith("close")) {
+                        for (let id = Object.keys(apps).length; id--; id == 0) {
+                            if (this.code.slice(6) == apps[id].name) {
+                                apps[id].doOnClose()
+                            }
+
+                        }
+                    }
+                    else if (this.code.startsWith("kill")) {
+                        for (let id = Object.keys(apps).length; id--; id == 0) {
+                            if (this.code.slice(5) == apps[id].name) {
+                                apps[id].open = false;
+                            }
+
+                        }
+                    }
                     // else if (this.code.startsWith("cd")) {
                     //     if (this.code.slice(3) != "") {
                     //         if (this.code.slice(3) == "settings") {
@@ -745,16 +783,25 @@ var apps = {
                     else if (this.code.startsWith("ls")) {
                         terminal.log("settings  apps")
                     }
-                    else if (this.code != ""){
+                    if (this.code != ""){
                     
                         try {
                             eval(this.code)
                         }
-                        catch {
-                            terminal.log("splash: " + this.code + ": command not found")
-                            }
-                        
+                        catch {    
+                            // terminal.log("splash: " + this.code + ": command not found")
+                        }
                     
+                        try {
+                            for (let id = termApps.length; id--; id == 0) {
+                                if (termApps[id].name == this.code) {
+                                    termApps[id].run()
+                                }
+                            }
+                        }
+                        catch {
+                            // terminal.log("splash: " + this.code + ": command not found")
+                        }
                     }
                     this.code = ""
                     this.keyHeld = true;
@@ -771,9 +818,7 @@ var apps = {
             this.open = false;
         },
         backgroundWorker: function() {
-            if (settings.accounts.currentUser == 0) {
-                apps[5].open = false;
-            }
+            
         },
     },
     
