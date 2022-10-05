@@ -43,7 +43,25 @@ var windows = {
                 selector.selectAble = false;
             }
         }
-        
+        if (Quality == 0) {
+            fill(theme[0] - 20, theme[1] - 20, theme[2] - 20)
+            rect(0,0,apps[id].width,apps[id].height);
+        }
+        else if (Quality == 1) {
+            fill(theme[0] - 20, theme[1] - 20, theme[2] - 20,200)
+            rect(0,0,apps[id].width,apps[id].height, 5);
+        }
+        else if (Quality == 2) {
+
+            fill(theme[0] - 20, theme[1] - 20, theme[2] - 20,120)
+            rect(0,0,apps[id].width,apps[id].height, 5);
+            drawingContext.filter = 'blur(10px)'
+            
+            rect(0, 0, apps[id]. width, apps[id].height, 5)
+
+            drawingContext.filter = 'blur(0px)'
+        }
+
         apps[id].innerContent();
         fill(255, 0, 0);
         if (mouseX > apps[id].x + 5 && mouseX < apps[id].x + 20 && mouseY > apps[id].y + 5 && mouseY < apps[id].y + 20) {

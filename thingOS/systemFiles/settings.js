@@ -1,7 +1,22 @@
 var settings = {
     displayGUI: function() {
-        background(settings.themes.background.color[0], settings.themes.background.color[1], settings.themes.background.color[2]);
-
+        if (settings.themes.background.what == false && Quality >= 2) {
+            image(img, 0, 0, window.innerWidth, window.innerHeight);
+        }
+        else if (settings.themes.background.what == false && Quality <= 1) {
+            background(settings.themes.background.color[0], settings.themes.background.color[1], settings.themes.background.color[2]);
+        }
+        else if (settings.themes.background.what == true) {
+            if (settings.themes.background.whatClock > 100) {
+                background(255)
+                settings.themes.background.whatClock = 0;
+            }
+            else {
+                settings.themes.background.whatClock++;
+            }
+            fill(255,0,0);
+            text("YOU SHALL DIE...", windowWidth / 2 - 100, 100);
+        }
         selector.selectArea();
 
         windows.ids();
@@ -25,6 +40,8 @@ var settings = {
             isPicture: false,
             color: [0,0,255],
             picturePath: "",
+            what: false,
+            whatClock: 0,
         },
     },
     taskbar: {
@@ -86,6 +103,13 @@ var settings = {
                             apps[id].open = false;
                         }
                     }
+                }
+                if (this.boxTyped == "what") {
+                    resizeCanvas(windowWidth, windowHeight);
+                    settings.themes.background.what = true;
+                }
+                if (this.boxTyped == "resize") {
+                    resizeCanvas(windowWidth, windowHeight);
                 }
                 this.boxTyped = "";
             }

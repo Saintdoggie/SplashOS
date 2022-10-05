@@ -18,19 +18,31 @@ var selector = {
                     this.selectWidth = mouseX-this.selectX;
                     this.selectHeight = mouseY-this.selectY;
                 }
+                if (Quality == 0) {
+                    noStroke()
 
-                noStroke()
-                drawingContext.filter = 'blur(10px)'
-                fill(theme[0],theme[1],theme[2], 50);
+                    fill(theme[0],theme[1],theme[2]);
+                    rect(this.selectX, this.selectY, this.selectWidth, this.selectHeight, 5);
+                }
+                else if (Quality == 1) {
+                    noStroke()
 
-                rect(this.selectX, this.selectY, this.selectWidth, this.selectHeight, 5);
+                    fill(theme[0],theme[1],theme[2], 150);
+                    rect(this.selectX, this.selectY, this.selectWidth, this.selectHeight, 5);
+                }
+                else if (Quality == 2) {
+                    noStroke()
+                    drawingContext.filter = 'blur(10px)'
+                    fill(theme[0],theme[1],theme[2], 50);
 
-                drawingContext.filter = 'blur(0px)'
+                    rect(this.selectX, this.selectY, this.selectWidth, this.selectHeight, 5);
 
-                fill(theme[0],theme[1],theme[2], 20);
+                    drawingContext.filter = 'blur(0px)'
 
-                rect(this.selectX, this.selectY, this.selectWidth, this.selectHeight, 5);
+                    fill(theme[0],theme[1],theme[2], 20);
 
+                    rect(this.selectX, this.selectY, this.selectWidth, this.selectHeight, 5);
+                }
 
             }
             

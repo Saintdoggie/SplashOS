@@ -12,24 +12,14 @@ var apps = {
         acTheme: "white",
         followMode: false,
         main: false,
+        open: false,
+
         init: function() {
             this.page = "";
-
             
         },
         innerContent: function() {
-            fill(theme[0] - 20, theme[1] - 20, theme[2] - 20,120)
-            rect(0,0,this.width,this.height, 5);
-
-            drawingContext.filter = 'blur(20px)'
-
-            stroke(theme[0], theme[1], theme[2], 200)
-
-            rect(10, 10, this.width, this.height, 5)
-0
-            drawingContext.filter = 'blur(0px)'
-
-            noStroke();
+            
 
 
 
@@ -196,11 +186,15 @@ var apps = {
             }
             
             if (this.page == "Display") {
+
                 fill(opposingColor);
                 textSize(20);
                 text("Display Settings", this.width / 2 - 30, 50);
-                text("Auto resize", this.width / 2 - 90, 120);
-                if (mouseX > this.x + this.width / 2 - 100 && mouseX < this.x + this.width / 2 + 20 && mouseY > this.y + 150 && mouseY < this.y + 230) {
+                text("Auto resize", this.width / 3 + 10, 120);
+                if (Quality == 0) {
+                    stroke(255);
+                }
+                if (mouseX > this.x + this.width / 3 && mouseX < this.x + this.width / 3 + 120 && mouseY > this.y + 150 && mouseY < this.y + 230) {
                     if (acTheme == "white") {
                         fill(theme[0] - 20, theme[1] - 20, theme[2] - 20, 200);
                     }
@@ -219,12 +213,13 @@ var apps = {
                         fill(theme[0] - 20, theme[1] - 20, theme[2] - 20, 200);
                     }
                 }
-                rect(this.width / 2 - 100, 150, 120,80,5);
+                rect(this.width / 3, 150, 120,80,5);
 
                 fill(opposingColor);
                 textSize(20);
-                text("Fullscreen", this.width / 1.3 - 90, 120);
-                if (mouseX > this.x + this.width / 1.3 - 100 && mouseX < this.x + this.width / 1.3 + 20 && mouseY > this.y + 150 && mouseY < this.y + 230) {
+                noStroke()
+                text("Fullscreen", this.width / 1.5 + 10, 120);
+                if (mouseX > this.x + this.width / 1.5 && mouseX < this.x + this.width / 1.5 + 120 && mouseY > this.y + 150 && mouseY < this.y + 230) {
                     if (acTheme == "white") {
                         fill(theme[0] - 20, theme[1] - 20, theme[2] - 20, 200);
                     }
@@ -247,7 +242,101 @@ var apps = {
                         fill(theme[0] - 20, theme[1] - 20, theme[2] - 20, 200);
                     }
                 }
-                rect(this.width / 1.3 - 100, 150, 120,80,5);
+                if (Quality == 0) {
+                    stroke(255);
+                }
+                rect(this.width / 1.5, 150, 120,80,5);
+
+                noStroke()
+                fill(opposingColor)
+                text("Quality", this.width / 2 + 30, 260);
+                text("Potato", this.width / 3 + 20, 300);
+                if (Quality == 0) {
+                    stroke(255);
+                }
+
+                if (mouseX > this.x + this.width / 3 && mouseX < this.x + this.width / 3 + 100 && mouseY > this.y + 320 && mouseY < this.y + 400) {
+                    if (acTheme == "white") {
+                        fill(theme[0] - 20, theme[1] - 20, theme[2] - 20, 200);
+                    }
+                    if (acTheme == "black") {
+                        fill(theme[0] + 20, theme[1] + 20, theme[2] + 20, 200);
+                    }
+                    if (mouseIsClicked) {
+                        Quality = 0;
+                    }
+                }
+                else {
+                    if (acTheme == "white") {
+                        fill(theme[0] + 20, theme[1] + 20, theme[2] + 20, 200);
+                    }
+                    if (acTheme == "black") {
+                        fill(theme[0] - 20, theme[1] - 20, theme[2] - 20, 200);
+                    }
+                }
+                rect(this.width / 3, 320, 100,80,5);
+                
+                noStroke()
+                fill(opposingColor)
+                text("Decent", this.width / 2 + 30, 300);
+                if (Quality == 0) {
+                    stroke(255);
+                }
+
+                if (mouseX > this.x + this.width / 2 + 10 && mouseX < this.x + this.width / 2 + 110 && mouseY > this.y + 320 && mouseY < this.y + 400) {
+                    if (acTheme == "white") {
+                        fill(theme[0] - 20, theme[1] - 20, theme[2] - 20, 200);
+                    }
+                    if (acTheme == "black") {
+                        fill(theme[0] + 20, theme[1] + 20, theme[2] + 20, 200);
+                    }
+                    if (mouseIsClicked) {
+                        Quality = 1;
+                    }
+                }
+                else {
+                    if (acTheme == "white") {
+                        fill(theme[0] + 20, theme[1] + 20, theme[2] + 20, 200);
+                    }
+                    if (acTheme == "black") {
+                        fill(theme[0] - 20, theme[1] - 20, theme[2] - 20, 200);
+                    }
+
+                }
+                rect(this.width / 2 + 10, 320, 100,80,5);
+                
+                noStroke()
+                fill(opposingColor)
+                text("Good(beta)", this.width / 1.5 + 20, 300);
+
+                if (Quality == 0) {
+                    stroke(255);
+                }
+                if (mouseX > this.x + this.width / 1.5 + 20 && mouseX < this.x + this.width / 1.5 + 120 && mouseY > this.y + 320 && mouseY < this.y + 400) {
+                    if (acTheme == "white") {
+                        fill(theme[0] - 20, theme[1] - 20, theme[2] - 20, 200);
+                    }
+                    if (acTheme == "black") {
+                        fill(theme[0] + 20, theme[1] + 20, theme[2] + 20, 200);
+                    }
+                    if (mouseIsClicked) {
+                        Quality = 2;
+                        img = loadImage("thingOS/thing.jpg");
+
+                    }
+                }
+                else {
+                    if (acTheme == "white") {
+                        fill(theme[0] + 20, theme[1] + 20, theme[2] + 20, 200);
+                    }
+                    if (acTheme == "black") {
+                        fill(theme[0] - 20, theme[1] - 20, theme[2] - 20, 200);
+                    }
+
+                }
+
+                rect(this.width / 1.5 + 20, 320, 100,80,5);
+                noStroke()
 
 
                 // header2("Test text", this.width / 1.47, 260);
@@ -264,7 +353,6 @@ var apps = {
             apps[0].open = false;
             apps[0].fullScreen = false;
         },
-        open: false,
         fullScreen: false,
 
     },
@@ -277,9 +365,6 @@ var apps = {
         y: 200,
         followMode: false,
         innerContent: function() {
-            fill(theme[0], theme[1], theme[2], 200)
-            noStroke()
-            rect(0,0,this.width,this.height);
             fill(opposingColor)
             text("Snake", this.width / 4 - 25, 120);
             fill(opposingColor)
@@ -346,9 +431,6 @@ var apps = {
             }
         },
         innerContent: function() {
-
-            fill(0)
-            rect(0,0,this.width,this.height, 5);
 
             this.fullScreen = true;
             if (this.timeX > 0) {
@@ -437,8 +519,6 @@ var apps = {
 
         },
         innerContent: function() {
-            fill(theme[0], theme[1], theme[2], 220);
-            rect(0,0,this.width,this.height);
             
             //plus button
 
@@ -556,8 +636,6 @@ var apps = {
             
         },
         innerContent: function() {
-            fill(theme[0], theme[1], theme[2], 200);
-            rect(0,0,this.width,this.height, 5)
             fill(opposingColor)
             textSize(25)
             for (let id = Object.keys(apps).length; id--; id === 0) {
@@ -602,9 +680,6 @@ var apps = {
             this.openApplications = [];
         },
         innerContent: function() {
-            fill(theme[0], theme[1], theme[2], 200);
-            noStroke()
-            rect(0,0,this.width,this.height, 5)
             if (mouseIsPressed && mouseX > this.x && mouseX < this.x + this.width && mouseY > this.y && mouseY < this.y + this.height) {
                 this.followMode = true;
                 this.xPlus = this.x - mouseX;
@@ -649,17 +724,6 @@ var apps = {
 
         },
         innerContent: function() {
-            fill(theme[0], theme[1], theme[2], 150)
-            rect(0,0,this.width,this.height,5)
-            
-            drawingContext.filter = 'blur(20px)'
-
-            stroke(theme[0], theme[1], theme[2], 150)
-            rect(10, 10, this.width, this.height, 5)
-
-
-
-            drawingContext.filter = 'blur(0px)'
             
             noStroke();
             textSize(25)
@@ -774,7 +838,6 @@ var apps = {
                     //     }
                     //     else {
                     //         terminal.log("No such directory")
-                    //     }
                         
                     // }
                     else if (this.code == "exit") {

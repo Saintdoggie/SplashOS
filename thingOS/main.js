@@ -1,5 +1,6 @@
 // p5.js main file
 
+var Quality = 1;
 
 
 function setup() 
@@ -15,6 +16,7 @@ function setup()
     settings.taskbar.init()
     windows.init()
     termApps = [];
+
 
 
 }
