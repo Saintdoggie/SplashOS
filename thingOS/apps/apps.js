@@ -321,7 +321,7 @@ var apps = {
                     }
                     if (mouseIsClicked) {
                         Quality = 2;
-                        img = loadImage("thingOS/thing.jpg");
+                        img = loadImage("thingOS/thing2.jpg");
 
                     }
                 }
