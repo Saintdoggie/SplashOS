@@ -1,7 +1,7 @@
 pkgList = {
     0: {
-        name: "neofetch",
-        link: "wave/pkgs/neofetch.js",   
+        name: "pfetch",
+        link: "wave/pkgs/pfetch.js",   
     },
     1: {
         name: "something",

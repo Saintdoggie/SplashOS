@@ -54,13 +54,19 @@ var settings = {
             this.boxTyped = "";
         },
         panel: function() {
-            fill(0);
-            drawingContext.filter = 'blur(40px)'
-            
-            rect(-10,height,width + 10,60); 
-            drawingContext.filter = 'blur(0px)'
-
-            fill(0,0,0,127.5)
+            if (Quality >= 2) {
+                fill(0);
+                drawingContext.filter = 'blur(40px)'
+                
+                rect(-10,height,width + 10,60); 
+                drawingContext.filter = 'blur(0px)'
+            }
+            if (Quality >= 1) {
+                fill(0,0,0,127.5);
+            }
+            if (Quality == 0) {
+                fill(0);
+            }
             rect(0,height - 60,width,60); 
 
             fill(0,0,0,200);
