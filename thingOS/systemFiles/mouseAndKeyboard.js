@@ -16,7 +16,7 @@ function mouse() {
     rectMode(CENTER)
     translate (mouseX, mouseY);
     rotate(5);
-// 	rect(-10, 10, 20, 20);
+	rect(-10, 10, 20, 20);
     resetMatrix()
     noStroke()
     rectMode(CORNER)
