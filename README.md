@@ -1,5 +1,6 @@
 # SplashOS
-trying to make an os with my tiny brain, also I suck at coding yeaaa
 
-basically this makes a canvas the size of the screen, then tries to simulate an operating system, like windows RG or something like it...
 
+A project I made when I was stupid at stuff...
+
+Very poorly optimized I think, I haven't looked at it in a while.
